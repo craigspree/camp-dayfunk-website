@@ -1384,8 +1384,10 @@
       /* ── Mobile stage tabs ── */
       var mobStageTabs = document.querySelectorAll('.mob-stage-tab');
       var stageCols    = document.querySelectorAll('.stage-col');
+      var currentMobStage = 0;
 
       function setMobStage(idx) {
+        currentMobStage = idx;
         mobStageTabs.forEach(function(t) {
           var active = String(t.dataset.stage) === String(idx);
           t.classList.toggle('active', active);
@@ -1398,13 +1400,16 @@
       mobStageTabs.forEach(function(tab) {
         tab.addEventListener('click', function() { setMobStage(tab.dataset.stage); });
       });
-      if (window.innerWidth <= 767) setMobStage(0);
+      var lastResizeWidth = window.innerWidth;
+      if (lastResizeWidth <= 767) setMobStage(0);
       window.addEventListener('resize', function() {
-        if (window.innerWidth > 767) {
+        var newWidth = window.innerWidth;
+        if (newWidth > 767) {
           stageCols.forEach(function(col) { col.classList.remove('mob-visible'); });
-        } else {
+        } else if (lastResizeWidth > 767) {
           setMobStage(0);
         }
+        lastResizeWidth = newWidth;
       }, { passive: true });
 
       /* ── Mobile hamburger nav ── */
