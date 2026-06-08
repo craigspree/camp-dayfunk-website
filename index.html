@@ -63,6 +63,7 @@
         "addressCountry": "US"
       }
     },
+    "image": "https://campdayfunk.com/og.jpg",
     "organizer": { "@type": "Organization", "name": "DayFunk", "url": "https://dayfunk.com" },
     "offers": { "@type": "Offer", "availability": "https://schema.org/SoldOut", "priceCurrency": "USD" }
   }
@@ -78,6 +79,11 @@
   <!-- ── FAVICONS ──────────────────────────────────────── -->
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="apple-touch-icon" href="logo.png">
+  <meta name="theme-color" content="#1a1208">
+
+  <!-- ── PRELOAD ───────────────────────────────────────── -->
+  <link rel="preload" as="image" href="logo.png">
   <meta name="theme-color" content="#fdf6ec">
 
   <style>
@@ -467,8 +473,8 @@
     /* ═══════════════════════════════════════════════════
        WAIVER
     ═══════════════════════════════════════════════════ */
-    .steps-wrap  { display: flex; flex-direction: column; align-items: center; }
-    .steps-svg   { width: 100%; max-width: 500px; }
+    .steps-wrap  { display: flex; flex-direction: column; justify-content: center; gap: .85rem; border: 1px solid var(--rule); background: var(--bg-mid); padding: 1.5rem; }
+    .steps-svg   { display: none; }
     .waiver-foot { font-family: var(--font-ital); font-style: italic; font-size: 0.88rem; color: var(--dim); text-align: center; margin-top: 0.75rem; line-height: 1.65; }
     @media (max-width: 767px) { .waiver-foot { display: none; } }
 
@@ -563,7 +569,7 @@
       padding-bottom: 0.25rem;
       border-bottom: 1px solid rgba(255,255,255,0.08);
     }
-    .dj-ch   { display: flex; align-items: center; gap: 0.45rem; font-family: var(--font-disp); font-size: 0.68rem; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(253,246,236,0.45); padding: 0.14rem 0; }
+    .dj-ch   { display: flex; align-items: center; gap: 0.45rem; font-family: var(--font-disp); font-size: 0.68rem; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(253,246,236,0.65); padding: 0.14rem 0; }
     .dj-dot  { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
     .dj-dot.r { background: #d42010; box-shadow: 0 0 6px rgba(212,32,16,0.7); }
     .dj-dot.g { background: #2a9040; box-shadow: 0 0 6px rgba(42,144,64,0.7); }
@@ -615,7 +621,7 @@
     }
     .footer-brand { display: flex; align-items: center; gap: 0.85rem; }
     .footer-logo  { width: 42px; height: auto; opacity: 0.6; }
-    .footer-wordmark { font-family: var(--font-disp); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(253,246,236,0.45); }
+    .footer-wordmark { font-family: var(--font-disp); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(253,246,236,0.65); }
     .footer-social { display: flex; gap: 0.5rem; flex-wrap: wrap; }
     .footer-link {
       font-family: var(--font-disp);
@@ -623,7 +629,7 @@
       font-weight: 700;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: rgba(253,246,236,0.45);
+      color: rgba(253,246,236,0.65);
       text-decoration: none;
       border: 1px solid rgba(253,246,236,0.18);
       padding: 0.3rem 0.75rem;
@@ -683,7 +689,7 @@
       #waiver .btn-row { flex-wrap: nowrap; }
       #waiver .btn-row .btn { flex: 1; justify-content: center; font-size: .78rem; padding: .65rem .5rem; letter-spacing: .08em; }
       .site-nav     { display: none; }
-      .steps-svg    { display: none; }
+      .steps-wrap   { display: none; }
       .steps-mobile { display: flex; }
       .mob-menu-btn {
         display: flex;
@@ -920,75 +926,16 @@
               <strong>New this year: all campers are required to sign the waiver before arriving at camp.</strong> Complete your digital waiver in advance, then present it at the gate on your phone or as a printed QR proof. Camp leads will scan your code and verify your ID on arrival. You will not be permitted to enter without a completed waiver.
             </p>
             <div class="btn-row">
-              <!-- TODO: replace href with waiver sign URL -->
-              <a class="btn btn-filled" href="#" aria-label="Sign the Camp DayFunk waiver">Sign Waiver</a>
-              <!-- TODO: replace href with QR code view URL -->
-              <a class="btn btn-orange" href="#" aria-label="View your camp check-in QR code">View My QR Code</a>
+              <a class="btn btn-filled" href="http://submerge.live/campdayfunk" target="_blank" rel="noopener noreferrer" aria-label="Sign the Camp DayFunk waiver">Sign Waiver</a>
+              <a class="btn btn-orange" href="http://submerge.live/campdayfunk" target="_blank" rel="noopener noreferrer" aria-label="View your camp check-in QR code">View My QR Code</a>
             </div>
           </div>
           <div class="steps-wrap">
-            <svg class="steps-svg" viewBox="0 0 590 155" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Four step check-in process: open QR code, show to camp lead who scans and checks ID, receive swag bag with headphones, enjoy camp">
-              <text x="56" y="11" text-anchor="middle" font-family="Barlow Condensed" font-size="8" font-weight="700" letter-spacing="3" fill="#e8610a">STEP 1</text>
-              <rect x="34" y="17" width="44" height="74" rx="4" fill="none" stroke="#1a1208" stroke-width="2"/>
-              <rect x="38" y="23" width="36" height="54" fill="none" stroke="#c8aa80" stroke-width="1"/>
-              <rect x="42" y="27" width="11" height="11" fill="none" stroke="#1a1208" stroke-width="1.5"/><rect x="44" y="29" width="7" height="7" fill="#1a1208"/>
-              <rect x="57" y="27" width="11" height="11" fill="none" stroke="#1a1208" stroke-width="1.5"/><rect x="59" y="29" width="7" height="7" fill="#1a1208"/>
-              <rect x="42" y="42" width="11" height="11" fill="none" stroke="#1a1208" stroke-width="1.5"/><rect x="44" y="44" width="7" height="7" fill="#1a1208"/>
-              <rect x="57" y="42" width="4" height="4" fill="#1a1208"/><rect x="64" y="42" width="4" height="4" fill="#1a1208"/>
-              <rect x="57" y="50" width="4" height="4" fill="#1a1208"/><rect x="64" y="50" width="4" height="4" fill="#1a1208"/>
-              <circle cx="56" cy="84" r="4" fill="none" stroke="#c8aa80" stroke-width="1"/>
-              <text x="56" y="109" text-anchor="middle" font-family="Caveat" font-size="12" fill="#5a4020">Open your</text>
-              <text x="56" y="123" text-anchor="middle" font-family="Caveat" font-size="12" fill="#5a4020">QR code</text>
-              <line x1="90" y1="54" x2="118" y2="54" stroke="#c8aa80" stroke-width="2"/>
-              <polygon points="118,50 126,54 118,58" fill="#c8aa80"/>
-              <text x="108" y="70" text-anchor="middle" font-family="Caveat" font-size="10" fill="#c8aa80">at the gate</text>
-              <text x="200" y="11" text-anchor="middle" font-family="Barlow Condensed" font-size="8" font-weight="700" letter-spacing="3" fill="#e8610a">STEP 2</text>
-              <circle cx="158" cy="29" r="9" fill="none" stroke="#1a1208" stroke-width="2"/>
-              <line x1="158" y1="38" x2="158" y2="67" stroke="#1a1208" stroke-width="2"/>
-              <line x1="158" y1="49" x2="143" y2="58" stroke="#1a1208" stroke-width="2"/>
-              <line x1="158" y1="49" x2="176" y2="41" stroke="#1a1208" stroke-width="2"/>
-              <rect x="173" y="28" width="14" height="22" rx="2" fill="none" stroke="#1a1208" stroke-width="2"/>
-              <line x1="158" y1="67" x2="151" y2="88" stroke="#1a1208" stroke-width="2"/>
-              <line x1="158" y1="67" x2="165" y2="88" stroke="#1a1208" stroke-width="2"/>
-              <circle cx="242" cy="29" r="9" fill="none" stroke="#1a1208" stroke-width="2"/>
-              <line x1="242" y1="38" x2="242" y2="67" stroke="#1a1208" stroke-width="2"/>
-              <line x1="242" y1="49" x2="214" y2="41" stroke="#1a1208" stroke-width="2"/>
-              <rect x="191" y="28" width="14" height="22" rx="2" fill="none" stroke="#e8610a" stroke-width="2"/>
-              <line x1="191" y1="39" x2="205" y2="39" stroke="#e8610a" stroke-width="2"/>
-              <line x1="242" y1="49" x2="257" y2="58" stroke="#1a1208" stroke-width="2"/>
-              <line x1="242" y1="67" x2="235" y2="88" stroke="#1a1208" stroke-width="2"/>
-              <line x1="242" y1="67" x2="249" y2="88" stroke="#1a1208" stroke-width="2"/>
-              <text x="200" y="109" text-anchor="middle" font-family="Caveat" font-size="12" fill="#5a4020">Camp lead scans</text>
-              <text x="200" y="123" text-anchor="middle" font-family="Caveat" font-size="12" fill="#5a4020">+ checks your ID</text>
-              <line x1="272" y1="54" x2="300" y2="54" stroke="#c8aa80" stroke-width="2"/>
-              <polygon points="300,50 308,54 300,58" fill="#c8aa80"/>
-              <text x="375" y="11" text-anchor="middle" font-family="Barlow Condensed" font-size="8" font-weight="700" letter-spacing="3" fill="#e8610a">STEP 3</text>
-              <circle cx="330" cy="29" r="9" fill="none" stroke="#1a1208" stroke-width="2"/>
-              <line x1="330" y1="38" x2="330" y2="67" stroke="#1a1208" stroke-width="2"/>
-              <line x1="330" y1="49" x2="315" y2="58" stroke="#1a1208" stroke-width="2"/>
-              <line x1="330" y1="49" x2="350" y2="41" stroke="#1a1208" stroke-width="2"/>
-              <line x1="330" y1="67" x2="323" y2="88" stroke="#1a1208" stroke-width="2"/>
-              <line x1="330" y1="67" x2="337" y2="88" stroke="#1a1208" stroke-width="2"/>
-              <path d="M357,37 Q367,26 377,37" fill="none" stroke="#1a1208" stroke-width="2"/>
-              <rect x="353" y="37" width="28" height="30" rx="3" fill="none" stroke="#1a1208" stroke-width="2"/>
-              <line x1="357" y1="48" x2="377" y2="48" stroke="#c8aa80" stroke-width="1"/>
-              <circle cx="420" cy="29" r="9" fill="none" stroke="#1a1208" stroke-width="2"/>
-              <line x1="420" y1="38" x2="420" y2="67" stroke="#1a1208" stroke-width="2"/>
-              <line x1="420" y1="49" x2="393" y2="41" stroke="#1a1208" stroke-width="2"/>
-              <line x1="420" y1="49" x2="435" y2="58" stroke="#1a1208" stroke-width="2"/>
-              <line x1="420" y1="67" x2="413" y2="88" stroke="#1a1208" stroke-width="2"/>
-              <line x1="420" y1="67" x2="427" y2="88" stroke="#1a1208" stroke-width="2"/>
-              <text x="375" y="109" text-anchor="middle" font-family="Caveat" font-size="12" fill="#5a4020">Camp lead hands you</text>
-              <text x="375" y="123" text-anchor="middle" font-family="Caveat" font-size="12" fill="#5a4020">a swag bag</text>
-              <line x1="450" y1="54" x2="476" y2="54" stroke="#c8aa80" stroke-width="2"/>
-              <polygon points="476,50 484,54 476,58" fill="#c8aa80"/>
-              <text x="530" y="11" text-anchor="middle" font-family="Barlow Condensed" font-size="8" font-weight="700" letter-spacing="3" fill="#e8610a">STEP 4</text>
-              <circle cx="530" cy="52" r="28" fill="none" stroke="#2a6830" stroke-width="2.5"/>
-              <polyline points="515,52 524,64 547,37" fill="none" stroke="#2a6830" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
-              <text x="530" y="97" text-anchor="middle" font-family="Caveat" font-size="14" fill="#2a6830" font-weight="700">You're in!</text>
-              <text x="530" y="113" text-anchor="middle" font-family="Caveat" font-size="11" fill="#8a6840">Enjoy camp</text>
-            </svg>
-            <p class="waiver-foot">* Swag bag includes DiscoKnect headphones for the weekend.<br><a href="#headphones" style="color:var(--orange)">$25 deposit</a>, fully refundable.</p>
+            <p class="eyebrow" style="margin-bottom:.65rem">Check-In Steps</p>
+            <div class="step-m"><span class="step-m-n">1</span><span class="step-m-txt">Open your QR code on your phone before you arrive at the gate (or bring your completed waiver printout with QR code on it).</span></div>
+            <div class="step-m"><span class="step-m-n">2</span><span class="step-m-txt">Show it to the camp lead at the gate. They'll scan it and verify your ID.</span></div>
+            <div class="step-m"><span class="step-m-n">3</span><span class="step-m-txt">The camp lead will hand you a swag bag with your DiscoKnect headphones (headphones require a <a href="#headphones" style="color:var(--orange)">$25 deposit</a>, fully refundable).</span></div>
+            <div class="step-m"><span class="step-m-n">4</span><span class="step-m-txt" style="color:var(--green);font-weight:500">You're in! Enjoy camp.</span></div>
           </div>
         </div>
         <!-- Mobile step list (shown instead of SVG on small screens) -->
@@ -1016,8 +963,7 @@
             <p style="font-size:1rem;line-height:1.8;color:var(--muted);margin-bottom:1rem">After 10PM, the only way to hear the DJs is through the DiscoKnect wireless headphone soundsystem. It is the secret ingredient to camp after dark, and you really won't want to miss it.</p>
             <p style="font-size:1rem;line-height:1.8;color:var(--muted);margin-bottom:1.75rem">Checking out a pair is completely optional. Add a $25 deposit when you sign your waiver and get every dollar back when you return the headphones at the end of the weekend.</p>
             <div class="btn-row">
-              <!-- TODO: link to deposit payment flow -->
-              <a class="btn btn-filled" href="#waiver" aria-label="Pay the $25 DiscoKnect headphone deposit">Pay $25 Headphone Deposit</a>
+              <a class="btn btn-filled" href="http://submerge.live/campdayfunk" target="_blank" rel="noopener noreferrer" aria-label="Pay the $25 DiscoKnect headphone deposit">Pay $25 Headphone Deposit</a>
             </div>
             <div class="hp-features">
               <div class="hp-feat">
@@ -1071,11 +1017,10 @@
               </div>
             </div>
           </div>
-          <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.85rem;min-height:240px;border:1px solid var(--rule);background:var(--bg-mid);padding:1.5rem;text-align:center">
-            <div style="font-family:var(--font-disp);font-size:2rem;font-weight:900;letter-spacing:.04em;color:var(--text)">submerge.live</div>
-            <div style="font-family:var(--font-disp);font-size:.62rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--faint)">Live Streaming Platform</div>
-            <div style="font-size:.8rem;color:var(--faint);margin-top:.25rem">(PLACEHOLDER)</div>
-          </div>
+          <a href="https://submerge.live" target="_blank" rel="noopener noreferrer" aria-label="Submerge.Live streaming platform" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.85rem;min-height:240px;border:1px solid var(--rule);background:var(--text);transition:background .18s;text-decoration:none;padding:1.5rem">
+            <img src="submerge-logo.png" alt="Submerge.Live" style="width:200px;height:auto" loading="lazy">
+            <span class="deposit-sub" style="text-align:center;line-height:1.6;color:rgba(253,246,236,0.55)">Streaming for camp is hosted by our friends<br>at Submerge.Live</span>
+          </a>
         </div>
       </div>
     </section>
@@ -1095,7 +1040,7 @@
             <a class="btn btn-filled" href="https://www.pluralisticrecords.com/campdayfunk" target="_blank" rel="noopener noreferrer" aria-label="Play the Camp DayFunk scavenger hunt on Pluralistic Records (opens in new tab)">Play the Game</a>
           </div>
           <a href="https://www.pluralisticrecords.com/campdayfunk" target="_blank" rel="noopener noreferrer" aria-label="Play the Camp DayFunk scavenger hunt on Pluralistic Records" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.85rem;min-height:280px;border:1px solid var(--rule);background:var(--bg-mid);transition:background .18s;text-decoration:none;padding:1.5rem">
-            <img src="https://static.wixstatic.com/media/79613e_6c629d55af3f4b7c978701a835094838~mv2.png/v1/fill/w_806,h_908,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/Pluralistic%20Records%20Logo.png"
+            <img src="pluralistic-logo.png"
                  alt="Pluralistic Records"
                  style="width:160px;height:auto"
                  loading="lazy">
