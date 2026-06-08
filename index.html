@@ -523,7 +523,8 @@
       text-transform: uppercase;
       padding: 0.7rem 1.5rem;
       cursor: pointer;
-      color: var(--faint);
+      color: var(--dim);
+      background: var(--bg-deep);
       border-right: 1px solid var(--rule);
       flex: 1;
       text-align: center;
@@ -534,8 +535,8 @@
       justify-content: center;
     }
     .day-tab:last-child { border-right: none; }
-    .day-tab.active { background: var(--text); color: var(--bg); }
-    .day-tab:not(.active):hover { background: var(--bg-mid); color: var(--text); }
+    .day-tab.active { background: var(--muted); color: var(--bg); }
+    .day-tab:not(.active):hover { background: var(--rule); color: var(--text); }
 
     .stage-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
     .stage-col  { background: var(--bg); padding: 1.5rem; }
