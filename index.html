@@ -14,9 +14,9 @@
   </script>
 
   <!-- ── SEO ───────────────────────────────────────────── -->
-  <title>Camp DayFunk 2026 — Camp Guide | July 17–19 | Bruce, WI</title>
-  <meta name="description" content="Camp DayFunk 2026 Camp Guide. Everything you need for the weekend: directions, packing list, waiver, headphones, streaming, schedule, and more. July 17–19 · Bruce, Wisconsin.">
-  <meta name="keywords" content="Camp DayFunk, Camp DayFunk 2026, DayFunk, house music camp, Minneapolis, Bruce WI">
+  <title>Camp DayFunk 2026 — Camp Guide | July 17–19</title>
+  <meta name="description" content="Camp DayFunk 2026 Camp Guide. Everything you need for the weekend: directions, packing list, waiver, headphones, streaming, schedule, and more. July 17–19.">
+  <meta name="keywords" content="Camp DayFunk, Camp DayFunk 2026, DayFunk, house music camp, Minneapolis">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://campdayfunk.com/">
 
@@ -24,7 +24,7 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://campdayfunk.com/">
   <meta property="og:title" content="Camp DayFunk 2026 — Camp Guide">
-  <meta property="og:description" content="Everything you need for camp: directions, packing list, waiver, headphones, streaming, and schedule. July 17–19, 2026 · Bruce, Wisconsin.">
+  <meta property="og:description" content="Everything you need for camp: directions, packing list, waiver, headphones, streaming, and schedule. July 17–19, 2026.">
   <meta property="og:image" content="https://campdayfunk.com/og2.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -35,7 +35,7 @@
   <!-- ── TWITTER CARD ──────────────────────────────────── -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Camp DayFunk 2026 — Camp Guide">
-  <meta name="twitter:description" content="Everything you need for camp: directions, packing list, waiver, headphones, streaming, and schedule. July 17–19, 2026 · Bruce WI.">
+  <meta name="twitter:description" content="Everything you need for camp: directions, packing list, waiver, headphones, streaming, and schedule. July 17–19, 2026.">
   <meta name="twitter:image" content="https://campdayfunk.com/og.jpg">
 
   <!-- ── STRUCTURED DATA ───────────────────────────────── -->
@@ -53,13 +53,10 @@
     "isAccessibleForFree": false,
     "location": {
       "@type": "Place",
-      "name": "Trails End Youth Camp",
+      "name": "Northern Wisconsin",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "N5405 Trails End St",
-        "addressLocality": "Bruce",
         "addressRegion": "WI",
-        "postalCode": "54819",
         "addressCountry": "US"
       }
     },
@@ -720,6 +717,7 @@
 
     @media (min-width: 768px) {
       .section { padding: 6rem 2.5rem; }
+      .site-nav__list { justify-content: center; }
     }
 
     /* ═══════════════════════════════════════════════════
@@ -732,6 +730,98 @@
       .check-grid { grid-template-columns: repeat(3, 1fr); }
       .btn { display: none; }
     }
+
+    /* ═══════════════════════════════════════════════════
+       COMING SOON MODAL
+    ═══════════════════════════════════════════════════ */
+    .cs-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(26, 18, 8, 0.72);
+      z-index: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+    }
+    .cs-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .cs-modal {
+      background: var(--bg);
+      border: 1px solid var(--rule);
+      border-top: 3px solid var(--orange);
+      max-width: 420px;
+      width: 100%;
+      padding: 2.25rem 2rem 2rem;
+      position: relative;
+      transform: translateY(12px);
+      transition: transform 0.22s ease;
+    }
+    .cs-overlay.open .cs-modal {
+      transform: none;
+    }
+    .cs-modal__close {
+      position: absolute;
+      top: 0.85rem;
+      right: 0.85rem;
+      background: none;
+      border: none;
+      color: var(--faint);
+      font-size: 1rem;
+      cursor: pointer;
+      padding: 0.35rem;
+      min-width: 32px;
+      min-height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: color 0.15s;
+    }
+    .cs-modal__close:hover { color: var(--text); }
+    .cs-modal__eyebrow {
+      font-family: var(--font-disp);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 0.6rem;
+    }
+    .cs-modal__title {
+      font-family: var(--font-disp);
+      font-size: 2.4rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      line-height: 0.92;
+      letter-spacing: -0.01em;
+      margin-bottom: 1rem;
+    }
+    .cs-modal__body {
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+    .cs-modal__dismiss {
+      font-family: var(--font-disp);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.65rem 1.5rem;
+      background: var(--text);
+      color: var(--bg);
+      border: none;
+      cursor: pointer;
+      min-height: 44px;
+      transition: background 0.15s;
+    }
+    .cs-modal__dismiss:hover { background: #2e200a; }
   </style>
 </head>
 <body>
@@ -823,30 +913,17 @@
         <div class="camp-opens">Camp opens at 12 Noon on Friday, July 17</div>
         <div class="two-col wide">
           <div>
-            <address style="font-style:normal">
-              <div class="addr-name">Trails End Youth Camp</div>
-              <button class="addr-copy-btn" id="addr-btn" aria-label="Copy address to clipboard" type="button">
-                <div class="addr-lines">
-                  <div class="addr-line">N5405 Trails End St</div>
-                  <div class="addr-line">Bruce, WI 54819</div>
-                </div>
-                <svg class="copy-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path></svg>
-                <span class="copied-msg">Copied to clipboard</span>
-              </button>
-            </address>
-            <p class="addr-drive">Approximately 2 hours and 20 minutes from the Minneapolis / St. Paul metro area.</p>
-            <div class="btn-row" style="margin-top:1.75rem">
-              <a class="btn btn-filled" href="https://maps.google.com/?q=N5405+Trails+End+St+Bruce+WI+54819" target="_blank" rel="noopener noreferrer" aria-label="Get directions to Trails End Youth Camp on Google Maps">Get Directions</a>
+            <p class="addr-drive">Approximately 2 hours and 20 minutes due east from the Minneapolis / St. Paul metro area.</p>
+            <div style="margin-top:1.75rem;padding:1.25rem 1.5rem;background:var(--bg-mid);border:1px solid var(--rule);border-left:3px solid var(--orange);">
+              <p style="font-family:var(--font-disp);font-size:0.78rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--text);margin-bottom:0.35rem;">Directions Coming Soon</p>
+              <p style="font-size:0.9rem;color:var(--muted);line-height:1.7;">Look for an email from Nick a few weeks ahead of camp with the address and exact directions.</p>
             </div>
           </div>
           <div class="map-embed">
-            <iframe
-              src="https://maps.google.com/maps?q=N5405+Trails+End+St,+Bruce,+WI+54819&output=embed&z=13"
-              title="Trails End Youth Camp on Google Maps"
-              allowfullscreen=""
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade">
-            </iframe>
+            <img src="camp-photo.jpg"
+                 alt="Camp in the north woods"
+                 style="width:100%;height:400px;object-fit:cover;display:block;"
+                 loading="lazy">
           </div>
         </div>
       </div>
@@ -926,8 +1003,8 @@
               <strong>New this year: all campers are required to sign the waiver before arriving at camp.</strong> Complete your digital waiver in advance, then present it at the gate on your phone or as a printed QR proof. Camp leads will scan your code and verify your ID on arrival. You will not be permitted to enter without a completed waiver.
             </p>
             <div class="btn-row">
-              <a class="btn btn-filled" href="http://submerge.live/campdayfunk" target="_blank" rel="noopener noreferrer" aria-label="Sign the Camp DayFunk waiver">Sign Waiver</a>
-              <a class="btn btn-orange" href="http://submerge.live/campdayfunk" target="_blank" rel="noopener noreferrer" aria-label="View your camp check-in QR code">View My QR Code</a>
+              <a class="btn btn-filled" href="http://submerge.live/campdayfunk" target="_blank" rel="noopener noreferrer" aria-label="Sign the Camp DayFunk waiver" data-coming-soon>Sign Waiver</a>
+              <a class="btn btn-orange" href="http://submerge.live/campdayfunk" target="_blank" rel="noopener noreferrer" aria-label="View your camp check-in QR code" data-coming-soon>View My QR Code</a>
             </div>
           </div>
           <div class="steps-wrap">
@@ -963,7 +1040,7 @@
             <p style="font-size:1rem;line-height:1.8;color:var(--muted);margin-bottom:1rem">After 10PM, the only way to hear the DJs is through the DiscoKnect wireless headphone soundsystem. It is the secret ingredient to camp after dark, and you really won't want to miss it.</p>
             <p style="font-size:1rem;line-height:1.8;color:var(--muted);margin-bottom:1.75rem">Checking out a pair is completely optional. Add a $25 deposit when you sign your waiver and get every dollar back when you return the headphones at the end of the weekend.</p>
             <div class="btn-row">
-              <a class="btn btn-filled" href="http://submerge.live/campdayfunk" target="_blank" rel="noopener noreferrer" aria-label="Pay the $25 DiscoKnect headphone deposit">Pay $25 Headphone Deposit</a>
+              <a class="btn btn-filled" href="http://submerge.live/campdayfunk" target="_blank" rel="noopener noreferrer" aria-label="Pay the $25 DiscoKnect headphone deposit" data-coming-soon>Pay $25 Headphone Deposit</a>
             </div>
             <div class="hp-features">
               <div class="hp-feat">
@@ -1005,15 +1082,15 @@
             <p style="font-size:.9rem;color:var(--muted);margin-bottom:.5rem">Per stage, per night. Links go live on show days:</p>
             <div class="stream-links">
               <!-- TODO: replace hrefs with final submerge.live stream URLs -->
-              <a class="btn btn-filled btn-sm" href="https://submerge.live" target="_blank" rel="noopener noreferrer">Stage 1</a>
-              <a class="btn btn-filled btn-sm" href="https://submerge.live" target="_blank" rel="noopener noreferrer">Stage 2</a>
+              <a class="btn btn-filled btn-sm" href="https://submerge.live" target="_blank" rel="noopener noreferrer" data-coming-soon>Stage 1</a>
+              <a class="btn btn-filled btn-sm" href="https://submerge.live" target="_blank" rel="noopener noreferrer" data-coming-soon>Stage 2</a>
             </div>
             <div style="margin-top:.85rem">
               <div style="font-family:var(--font-disp);font-size:.62rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--faint);margin-bottom:.5rem">DiscoKnect</div>
               <div class="stream-links" style="margin-top:0">
-                <a class="btn btn-orange btn-sm" href="https://submerge.live" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:.45rem"><span style="width:9px;height:9px;border-radius:50%;background:#d42010;flex-shrink:0"></span>Red</a>
-                <a class="btn btn-orange btn-sm" href="https://submerge.live" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:.45rem"><span style="width:9px;height:9px;border-radius:50%;background:#2a9040;flex-shrink:0"></span>Green</a>
-                <a class="btn btn-orange btn-sm" href="https://submerge.live" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:.45rem"><span style="width:9px;height:9px;border-radius:50%;background:#2a55db;flex-shrink:0"></span>Blue</a>
+                <a class="btn btn-orange btn-sm" href="https://submerge.live" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:.45rem" data-coming-soon><span style="width:9px;height:9px;border-radius:50%;background:#d42010;flex-shrink:0"></span>Red</a>
+                <a class="btn btn-orange btn-sm" href="https://submerge.live" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:.45rem" data-coming-soon><span style="width:9px;height:9px;border-radius:50%;background:#2a9040;flex-shrink:0"></span>Green</a>
+                <a class="btn btn-orange btn-sm" href="https://submerge.live" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:.45rem" data-coming-soon><span style="width:9px;height:9px;border-radius:50%;background:#2a55db;flex-shrink:0"></span>Blue</a>
               </div>
             </div>
           </div>
@@ -1036,6 +1113,7 @@
           <div>
             <p class="eyebrow">Interactive Game</p>
             <h2 id="hunt-h" class="sec-title">Scavenger Hunt</h2>
+            <p style="font-size:1rem;line-height:1.8;color:var(--text);font-weight:600;margin-bottom:.75rem">You can peek, but you can't play yet. The secret password for the game will be shared at camp.</p>
             <p style="font-size:1rem;line-height:1.8;color:var(--muted);margin-bottom:1.75rem">Explore the campgrounds, find clues, and unlock the full Camp DayFunk experience. The hunt runs all weekend long.</p>
             <a class="btn btn-filled" href="https://www.pluralisticrecords.com/campdayfunk" target="_blank" rel="noopener noreferrer" aria-label="Play the Camp DayFunk scavenger hunt on Pluralistic Records (opens in new tab)">Play the Game</a>
           </div>
@@ -1075,10 +1153,10 @@
             </div>
             <div class="btn-row" style="margin-top:1.75rem">
               <!-- TODO: replace href with sign-up URL when available -->
-              <a class="btn btn-filled" href="#" aria-label="Sign up for a volunteer slot at Camp DayFunk">Sign Up to Volunteer</a>
+              <a class="btn btn-filled" href="#" aria-label="Sign up for a volunteer slot at Camp DayFunk" data-coming-soon>Sign Up to Volunteer</a>
             </div>
           </div>
-          <a class="deposit-card" href="#" aria-label="Sign up for a volunteer slot at Camp DayFunk" style="text-decoration:none;color:inherit">
+          <a class="deposit-card" href="#" aria-label="Sign up for a volunteer slot at Camp DayFunk" style="text-decoration:none;color:inherit" data-coming-soon>
             <div style="font-size:2.5rem;text-align:center;margin-bottom:.5rem" role="img" aria-label="Volunteer">🙋</div>
             <div class="deposit-amt" style="font-size:3.5rem">20</div>
             <div class="deposit-lbl">Min shift</div>
@@ -1264,6 +1342,19 @@
     <span class="footer-wordmark">campdayfunk.com</span>
   </footer>
 
+  <!-- ══════════════════════════════════════════════════════
+       COMING SOON MODAL
+  ══════════════════════════════════════════════════════ -->
+  <div class="cs-overlay" id="cs-overlay" role="dialog" aria-modal="true" aria-labelledby="cs-title" aria-hidden="true">
+    <div class="cs-modal">
+      <button class="cs-modal__close" id="cs-close" aria-label="Close">✕</button>
+      <p class="cs-modal__eyebrow">Almost Time</p>
+      <h2 class="cs-modal__title" id="cs-title">We're Still Setting Up the Tents</h2>
+      <p class="cs-modal__body" id="cs-body">This link isn't active yet. We turn everything on as camp gets closer. Check back in a few weeks!</p>
+      <button class="cs-modal__dismiss" id="cs-dismiss">Got It</button>
+    </div>
+  </div>
+
   <script defer>
     document.addEventListener('DOMContentLoaded', function() {
 
@@ -1386,28 +1477,66 @@
         });
       }
 
-      /* ── Address copy button ── */
-      var addrBtn = document.getElementById('addr-btn');
-      if (addrBtn) {
-        addrBtn.addEventListener('click', function() {
-          var addr = 'N5405 Trails End St, Bruce, WI 54819';
-          var onCopied = function() {
-            addrBtn.classList.add('copied');
-            setTimeout(function() { addrBtn.classList.remove('copied'); }, 2500);
-          };
-          if (navigator.clipboard && navigator.clipboard.writeText) {
-            navigator.clipboard.writeText(addr).then(onCopied).catch(function() {
-              document.execCommand('copy'); onCopied();
-            });
-          } else {
-            var ta = document.createElement('textarea');
-            ta.value = addr; ta.style.position = 'absolute'; ta.style.left = '-9999px';
-            document.body.appendChild(ta); ta.select();
-            try { document.execCommand('copy'); onCopied(); } catch(e) {}
-            document.body.removeChild(ta);
-          }
-        });
+      /* ── Coming-soon modal ── */
+      var csOverlay  = document.getElementById('cs-overlay');
+      var csClose    = document.getElementById('cs-close');
+      var csDismiss  = document.getElementById('cs-dismiss');
+      var csTitle    = document.getElementById('cs-title');
+      var csBody     = document.getElementById('cs-body');
+      var csOpenCount = 0;
+      var csLastIdx   = -1;
+
+      var csMessages = [
+        { t: 'The Fire Isn\'t Lit Yet',                    b: 'Good things take time to get going. This link included. We\'ll have it ready before you hit the road.' },
+        { t: 'You\'ve Got the Energy of a Raccoon at a Cooler', b: 'We respect it. But this still isn\'t live. Sit tight, camper. Everything goes live closer to July.' },
+        { t: 'Even the Lake Doesn\'t Rush the Sunrise',    b: 'Neither does this link. Check back in a few weeks and it\'ll be waiting for you.' },
+        { t: 'The S\'mores Aren\'t Ready Either',          b: 'But July 17th is coming fast. Everything goes live right before camp. You\'ll hear from us.' },
+        { t: 'The Trailhead\'s Right There',               b: 'You just have to wait for the gate to open. Good things come to those who wait. Pack light.' },
+        { t: 'Not Even the Bears Are Up Yet',              b: 'Check back closer to July. Everything will be ready and waiting.' },
+        { t: 'The Cabin Lights Aren\'t On Yet',            b: 'But they will be. Everything opens up as we get closer to July 17.' },
+        { t: 'Still Rolling Up the Sleeping Bag',          b: 'We\'re almost ready. This link will be live before you need to pack the car.' },
+        { t: 'Put the Cooler Down',                        b: 'You\'re not at camp yet, but you will be. This link goes live right before July. Almost time.' },
+        { t: 'The Hammock Isn\'t Hung Yet',                b: 'Every great campsite takes a little setup. So does this. We\'re getting there.' }
+      ];
+
+      function openCsModal() {
+        if (csOpenCount > 0) {
+          var idx;
+          do { idx = Math.floor(Math.random() * csMessages.length); } while (idx === csLastIdx);
+          csLastIdx = idx;
+          csTitle.textContent = csMessages[idx].t;
+          csBody.textContent  = csMessages[idx].b;
+        } else {
+          csTitle.textContent = 'We\'re Still Setting Up the Tents';
+          csBody.textContent  = 'This link isn\'t active yet. We turn everything on as camp gets closer. Check back in a few weeks!';
+        }
+        csOpenCount++;
+        csOverlay.classList.add('open');
+        csOverlay.removeAttribute('aria-hidden');
+        document.body.style.overflow = 'hidden';
+        csDismiss.focus();
       }
+      function closeCsModal() {
+        csOverlay.classList.remove('open');
+        csOverlay.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      }
+
+      document.querySelectorAll('[data-coming-soon]').forEach(function(el) {
+        el.addEventListener('click', function(e) {
+          e.preventDefault();
+          openCsModal();
+        });
+      });
+
+      if (csClose)   csClose.addEventListener('click', closeCsModal);
+      if (csDismiss) csDismiss.addEventListener('click', closeCsModal);
+      if (csOverlay) csOverlay.addEventListener('click', function(e) {
+        if (e.target === csOverlay) closeCsModal();
+      });
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && csOverlay.classList.contains('open')) closeCsModal();
+      });
 
       /* ── Packing list localStorage persistence ── */
       var checkboxes = document.querySelectorAll('.check-item input[type="checkbox"]');
