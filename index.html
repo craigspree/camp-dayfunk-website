@@ -114,11 +114,11 @@
   <!-- ── FAVICONS ──────────────────────────────────────── -->
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
-  <link rel="apple-touch-icon" href="logo.png">
+  <link rel="apple-touch-icon" href="images/logo.png">
   <meta name="theme-color" content="#1a1208">
 
   <!-- ── PRELOAD ───────────────────────────────────────── -->
-  <link rel="preload" as="image" href="logo.png">
+  <link rel="preload" as="image" href="images/logo.png">
   <meta name="theme-color" content="#fdf6ec">
 
   <style>
@@ -751,6 +751,12 @@
       }
       .mob-menu-btn:hover { background: #2e200a; }
       .mob-overlay { display: flex; }
+      body.player-min .mob-menu-btn {
+        bottom: calc(1.5rem + env(safe-area-inset-bottom, 0px) + 72px);
+      }
+      body.player-open .mob-menu-btn {
+        bottom: calc(1.5rem + env(safe-area-inset-bottom, 0px) + 248px);
+      }
     }
 
     @media (min-width: 768px) {
@@ -860,6 +866,235 @@
       transition: background 0.15s;
     }
     .cs-modal__dismiss:hover { background: #2e200a; }
+
+    /* ═══════════════════════════════════════════════════
+       ARTIST (CAMP FIELD GUIDE) MODAL
+    ═══════════════════════════════════════════════════ */
+    .artist-btn {
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      font: inherit;
+      color: inherit;
+      letter-spacing: inherit;
+      text-transform: inherit;
+      text-decoration: underline dotted;
+      text-underline-offset: 3px;
+      transition: color 0.15s;
+    }
+    .artist-btn:hover { color: var(--orange); text-decoration-style: solid; }
+    .fg-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(26, 18, 8, 0.82);
+      z-index: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+    }
+    .fg-overlay.open { opacity: 1; pointer-events: auto; }
+    .fg-modal {
+      background: var(--bg);
+      border: 1px solid var(--rule);
+      max-width: 560px;
+      width: 100%;
+      position: relative;
+      max-height: calc(100vh - 3rem);
+      overflow-y: auto;
+      overflow-x: hidden;
+      transform: translateY(12px);
+      transition: transform 0.22s ease;
+    }
+    .fg-overlay.open .fg-modal { transform: none; }
+    .fg-modal__img {
+      width: 100%;
+      display: block;
+      max-height: 320px;
+      object-fit: cover;
+      object-position: center 20%;
+    }
+    .fg-modal__close {
+      position: absolute;
+      top: 0.75rem;
+      right: 0.75rem;
+      background: rgba(26, 18, 8, 0.55);
+      border: none;
+      color: #fdf6ec;
+      font-size: 0.9rem;
+      cursor: pointer;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s;
+      z-index: 1;
+    }
+    .fg-modal__close:hover { background: rgba(26, 18, 8, 0.92); }
+    .fg-modal__content { padding: 1.75rem 2rem 2rem; border-top: 3px solid var(--orange); }
+    .fg-modal__eyebrow {
+      font-family: var(--font-disp);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 0.5rem;
+    }
+    .fg-modal__title {
+      font-family: var(--font-disp);
+      font-size: 2.8rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      line-height: 0.9;
+      letter-spacing: -0.01em;
+      margin-bottom: 1.25rem;
+    }
+    .fg-modal__bio { display: flex; flex-direction: column; gap: 0.85rem; margin-bottom: 1.5rem; }
+    .fg-modal__bio p { font-size: 0.92rem; color: var(--muted); line-height: 1.75; }
+    .fg-modal__dismiss {
+      font-family: var(--font-disp);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.65rem 1.5rem;
+      background: var(--text);
+      color: var(--bg);
+      border: none;
+      cursor: pointer;
+      min-height: 44px;
+      transition: background 0.15s;
+    }
+    .fg-modal__dismiss:hover { background: #2e200a; }
+    .fg-modal--no-img .fg-modal__img { display: none; }
+    @media (max-width: 767px) {
+      .fg-modal__content { padding: 1.25rem 1.5rem 1.75rem; }
+      .fg-modal__title { font-size: 2.2rem; }
+      .fg-modal__img { max-height: 220px; }
+    }
+
+    /* ═══════════════════════════════════════════════════
+       CASSETTE EASTER EGG — SLIDING PLAYER DOCK
+    ═══════════════════════════════════════════════════ */
+    .cassette-wrap { cursor: pointer; display: block; }
+    .player-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--text);
+      border-top: 2px solid var(--orange);
+      z-index: 150;
+      padding: 0.85rem 1.5rem calc(1rem + env(safe-area-inset-bottom, 0px));
+      transform: translateY(100%);
+      transition: transform 0.38s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .player-bar.open,
+    .player-bar.minimized { transform: translateY(0); }
+    .player-bar__hd {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.65rem;
+    }
+    .player-bar.minimized .player-bar__hd { cursor: pointer; margin-bottom: 0; }
+    .player-bar__label {
+      font-family: var(--font-disp);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--orange);
+      white-space: nowrap;
+    }
+    .player-bar__controls { display: flex; align-items: center; gap: 0.1rem; }
+    .player-bar__btn {
+      background: none;
+      border: none;
+      color: rgba(253,246,236,0.4);
+      cursor: pointer;
+      font-size: 0.9rem;
+      min-width: 32px;
+      min-height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: color 0.15s;
+      padding: 0.25rem;
+    }
+    .player-bar__btn:hover { color: var(--bg); }
+    .player-bar__info { display: flex; align-items: center; gap: 0.6rem; min-width: 0; }
+    .player-bar__nowplaying {
+      font-family: var(--font-disp);
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(253,246,236,0.55);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 320px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .player-bar.playing .player-bar__nowplaying { opacity: 1; }
+    @media (max-width: 767px) { .player-bar__nowplaying { max-width: 140px; } }
+    .vu-meter {
+      display: none;
+      align-items: flex-end;
+      gap: 2px;
+      height: 14px;
+    }
+    .player-bar.minimized .vu-meter,
+    .player-bar.open .vu-meter { display: flex; }
+    .vu-bar {
+      width: 3px;
+      background: var(--orange);
+      border-radius: 1px;
+      height: 8px;
+      opacity: 0.4;
+    }
+    .player-bar.playing .vu-bar { animation: vu 0.7s ease-in-out infinite alternate; }
+    .player-bar.playing .vu-bar:nth-child(1) { animation-duration: 0.55s; animation-delay: 0.00s; }
+    .player-bar.playing .vu-bar:nth-child(2) { animation-duration: 0.75s; animation-delay: 0.12s; }
+    .player-bar.playing .vu-bar:nth-child(3) { animation-duration: 0.50s; animation-delay: 0.05s; }
+    .player-bar.playing .vu-bar:nth-child(4) { animation-duration: 0.85s; animation-delay: 0.18s; }
+    .player-bar.playing .vu-bar:nth-child(5) { animation-duration: 0.60s; animation-delay: 0.08s; }
+    @keyframes vu {
+      0%   { height: 3px;  opacity: 0.5; }
+      100% { height: 14px; opacity: 1;   }
+    }
+    @media (prefers-reduced-motion: reduce) { .player-bar.playing .vu-bar { animation: none; height: 8px; } }
+    #player-expand, #player-stop { display: none; }
+    .player-bar.minimized #player-prev,
+    .player-bar.minimized #player-next,
+    .player-bar.minimized #player-minimize { display: none; }
+    .player-bar.minimized #player-expand,
+    .player-bar.minimized #player-stop { display: flex; }
+    .player-bar.minimized .player-bar__body { display: none; }
+    .player-bar__body { display: flex; align-items: stretch; }
+    .player-bar__thumb {
+      width: 166px;
+      height: 166px;
+      object-fit: cover;
+      object-position: center 8%;
+      flex-shrink: 0;
+      display: block;
+    }
+    @media (max-width: 767px) { .player-bar__thumb { display: none; } }
+    .player-bar__body iframe {
+      display: block;
+      flex: 1;
+      min-width: 0;
+      height: 166px;
+      border: 0;
+    }
   </style>
 </head>
 <body>
@@ -871,7 +1106,7 @@
     <section class="hero" aria-labelledby="hero-heading">
       <div class="hero-bg" aria-hidden="true">CAMP</div>
       <div class="hero__content">
-        <img src="logo.png"
+        <img src="images/logo.png"
              alt="Camp DayFunk"
              class="logo-img"
              width="200"
@@ -958,7 +1193,9 @@
             </div>
           </div>
           <div class="map-embed">
-            <img src="camp-photo.jpg"
+            <img src="images/camp-photo.jpg"
+                 id="cassette-img"
+                 class="cassette-wrap"
                  alt="Camp in the north woods"
                  style="width:100%;height:400px;object-fit:cover;display:block;"
                  loading="lazy">
@@ -1133,7 +1370,7 @@
             </div>
           </div>
           <a href="https://submerge.live" target="_blank" rel="noopener noreferrer" aria-label="Submerge.Live streaming platform" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.85rem;min-height:240px;border:1px solid var(--rule);background:var(--text);transition:background .18s;text-decoration:none;padding:1.5rem">
-            <img src="submerge-logo.png" alt="Submerge.Live" style="width:200px;height:auto" loading="lazy">
+            <img src="images/submerge-logo.png" alt="Submerge.Live" style="width:200px;height:auto" loading="lazy">
             <span class="deposit-sub" style="text-align:center;line-height:1.6;color:rgba(253,246,236,0.55)">Streaming for camp is hosted by our friends<br>at Submerge.Live</span>
           </a>
         </div>
@@ -1156,7 +1393,7 @@
             <a class="btn btn-filled" href="https://www.pluralisticrecords.com/campdayfunk" target="_blank" rel="noopener noreferrer" aria-label="Play the Camp DayFunk scavenger hunt on Pluralistic Records (opens in new tab)">Play the Game</a>
           </div>
           <a href="https://www.pluralisticrecords.com/campdayfunk" target="_blank" rel="noopener noreferrer" aria-label="Play the Camp DayFunk scavenger hunt on Pluralistic Records" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.85rem;min-height:280px;border:1px solid var(--rule);background:var(--bg-mid);transition:background .18s;text-decoration:none;padding:1.5rem">
-            <img src="pluralistic-logo.png"
+            <img src="images/pluralistic-logo.png"
                  alt="Pluralistic Records"
                  style="width:160px;height:auto"
                  loading="lazy">
@@ -1217,7 +1454,7 @@
         <div class="lineup-grid" role="list" aria-label="Camp DayFunk 2026 lineup">
           <div class="lineup-row" role="listitem">
             <p class="lineup-tier">Headliners</p>
-            <p class="lineup-names">DJ Slugo &bull; Woody McBride &bull; Fortune &bull; Doc Link &bull; DJ Dazy</p>
+            <p class="lineup-names"><button class="artist-btn" data-artist="slugo">DJ Slugo</button> &bull; <button class="artist-btn" data-artist="woody">Woody McBride</button> &bull; <button class="artist-btn" data-artist="fortune">Fortune</button> &bull; <button class="artist-btn" data-artist="doclink">Doc Link</button> &bull; <button class="artist-btn" data-artist="dazy">DJ Dazy</button></p>
           </div>
           <div class="lineup-row" role="listitem">
             <p class="lineup-tier">Also Performing</p>
@@ -1364,7 +1601,7 @@
   ══════════════════════════════════════════════════════ -->
   <footer class="site-footer">
     <div class="footer-brand">
-      <img src="dayfunk-logo.png" alt="DayFunk" class="footer-logo" width="42" height="42">
+      <img src="images/dayfunk-logo.png" alt="DayFunk" class="footer-logo" width="42" height="42">
       <span class="footer-wordmark">Camp DayFunk 2026</span>
     </div>
     <nav class="footer-social" aria-label="Social and related links">
@@ -1394,8 +1631,67 @@
     </div>
   </div>
 
+  <!-- ══════════════════════════════════════════════════════
+       CASSETTE PLAYER BAR
+  ══════════════════════════════════════════════════════ -->
+  <div class="player-bar" id="player-bar">
+    <div class="player-bar__hd">
+      <div class="player-bar__info">
+        <span class="player-bar__label">📼 &nbsp;Road Trip Playlist</span>
+        <div class="vu-meter" aria-hidden="true">
+          <span class="vu-bar"></span>
+          <span class="vu-bar"></span>
+          <span class="vu-bar"></span>
+          <span class="vu-bar"></span>
+          <span class="vu-bar"></span>
+        </div>
+        <span class="player-bar__nowplaying" id="player-nowplaying" aria-live="polite"></span>
+      </div>
+      <div class="player-bar__controls">
+        <button class="player-bar__btn" id="player-prev" aria-label="Previous track">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><rect x="2" y="3" width="2" height="10" rx="1"/><polygon points="13,3 6,8 13,13"/></svg>
+        </button>
+        <button class="player-bar__btn" id="player-next" aria-label="Next track">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><polygon points="3,3 10,8 3,13"/><rect x="12" y="3" width="2" height="10" rx="1"/></svg>
+        </button>
+        <button class="player-bar__btn" id="player-minimize" aria-label="Minimize player">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><polyline points="2,4 7,10 12,4"/></svg>
+        </button>
+        <button class="player-bar__btn" id="player-expand" aria-label="Expand player">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><polyline points="2,10 7,4 12,10"/></svg>
+        </button>
+        <button class="player-bar__btn" id="player-stop" aria-label="Stop and close">✕</button>
+      </div>
+    </div>
+    <div class="player-bar__body">
+      <img src="images/dayfunk_house_maintenance_soundcloud_t1080x1080.jpg" alt="DayFunk House Maintenance" class="player-bar__thumb" aria-hidden="true">
+      <iframe id="player-iframe" scrolling="no" frameborder="no" allow="autoplay" src="" title="DayFunk Road Trip Playlist"></iframe>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════
+       CAMP FIELD GUIDE — ARTIST SPOTLIGHT MODAL
+  ══════════════════════════════════════════════════════ -->
+  <div class="fg-overlay" id="fg-overlay" role="dialog" aria-modal="true" aria-labelledby="fg-artist-name" aria-hidden="true">
+    <div class="fg-modal">
+      <button class="fg-modal__close" id="fg-close" aria-label="Close">✕</button>
+      <img id="fg-artist-img" src="" alt="" class="fg-modal__img">
+      <div class="fg-modal__content">
+        <p class="fg-modal__eyebrow">Camp Field Guide</p>
+        <h2 id="fg-artist-name" class="fg-modal__title"></h2>
+        <div id="fg-artist-bio" class="fg-modal__bio"></div>
+        <button class="fg-modal__dismiss" id="fg-dismiss">Close</button>
+      </div>
+    </div>
+  </div>
+
   <script defer>
     document.addEventListener('DOMContentLoaded', function() {
+
+      /* ── GA4 event helper ── */
+      function track(name, params) {
+        if (typeof gtag === 'function') gtag('event', name, params || {});
+      }
 
       /* ── Fade-up on scroll ── */
       var fadeObs = new IntersectionObserver(function(entries) {
@@ -1443,6 +1739,7 @@
       dayTabs.forEach(function(tab) {
         tab.addEventListener('click', function() {
           var day = tab.dataset.day;
+          track('schedule_day_tab', { day: day === 'sat' ? 'Saturday' : 'Friday' });
           dayTabs.forEach(function(t) {
             t.classList.remove('active');
             t.setAttribute('aria-selected', 'false');
@@ -1473,7 +1770,11 @@
         });
       }
       mobStageTabs.forEach(function(tab) {
-        tab.addEventListener('click', function() { setMobStage(tab.dataset.stage); });
+        tab.addEventListener('click', function() {
+          var stageNames = ['Stage 1', 'Stage 2', 'DiscoKnect'];
+          track('schedule_stage_tab', { stage: stageNames[tab.dataset.stage] || tab.dataset.stage });
+          setMobStage(tab.dataset.stage);
+        });
       });
       var lastResizeWidth = window.innerWidth;
       if (lastResizeWidth <= 767) setMobStage(0);
@@ -1512,7 +1813,10 @@
       if (mobClose) mobClose.addEventListener('click', closeMobNav);
       if (mobOverlay) {
         mobOverlay.querySelectorAll('.mob-overlay__link').forEach(function(link) {
-          link.addEventListener('click', closeMobNav);
+          link.addEventListener('click', function() {
+            track('nav_click', { section: link.getAttribute('href').replace('#', ''), nav_type: 'mobile' });
+            closeMobNav();
+          });
         });
       }
 
@@ -1564,6 +1868,7 @@
       document.querySelectorAll('[data-coming-soon]').forEach(function(el) {
         el.addEventListener('click', function(e) {
           e.preventDefault();
+          track('coming_soon_click', { link_label: el.getAttribute('aria-label') || el.textContent.trim() });
           openCsModal();
         });
       });
@@ -1574,7 +1879,105 @@
         if (e.target === csOverlay) closeCsModal();
       });
       document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && csOverlay.classList.contains('open')) closeCsModal();
+        if (e.key === 'Escape') {
+          if (csOverlay.classList.contains('open')) closeCsModal();
+          if (fgOverlay && fgOverlay.classList.contains('open')) closeFgModal();
+        }
+      });
+
+      /* ── Camp Field Guide: artist spotlight popup ── */
+      var fgOverlay = document.getElementById('fg-overlay');
+      var fgClose   = document.getElementById('fg-close');
+      var fgDismiss = document.getElementById('fg-dismiss');
+      var fgImg     = document.getElementById('fg-artist-img');
+      var fgName    = document.getElementById('fg-artist-name');
+      var fgBio     = document.getElementById('fg-artist-bio');
+      var fgModal   = fgOverlay ? fgOverlay.querySelector('.fg-modal') : null;
+
+      var fgTeasers = [
+        { t: "Their Ink Isn’t Dry Yet",              b: "Good field notes take time. Their chapter is almost ready." },
+        { t: "Still Taking Field Notes",                   b: "We’re documenting this one carefully. Worth the wait." },
+        { t: "Their Dispatch is Still in the Woods",       b: "The field guide doesn’t give everything away at once." }
+      ];
+      var fgTeaserLastIdx = -1;
+
+      var artistData = {
+        slugo: {
+          name: 'DJ Slugo',
+          img: 'images/field-guide-slugo.jpg',
+          bio: [
+            'There are certain names in dance music that instantly mean something if you know... DJ Slugo is one of those names.',
+            'Long before algorithms, playlists, or social media DJs, Slugo was helping build an entirely new sound out of Chicago alongside legends like Paul Johnson and DJ Deeon through the infamous Dance Mania label. Raw. Fast. Unfiltered. Funny. Dirty. Human.',
+            "If you've ever wondered where modern club music gets its edge, there's a good chance it traces back to records Slugo made in the 90's.",
+            "Even Daft Punk named him directly as one of their \"teachers\" on the iconic track Teachers, referencing Slugo and his track \"DJ's On The Low\" by name. Think about that for a second. One of the most influential electronic acts in history openly crediting a guy who is now heading to Camp DayFunk. That's wild.",
+            "His records became global underground classics: Wouldn't You Like To Be A Hoe Too, A Blunt, Godzilla Track, Where The Rats — and many more that helped shape Chicago juke and ghetto house culture around the world.",
+            "And somehow, in between international gigs and global recognition, he's coming to hang with us in the woods.",
+            "Dance Mania was, is, and always will be one of the defining forces behind the raw sound of Chicago house music. And this summer, one of its architects is coming to camp."
+          ]
+        },
+        dazy: {
+          name: 'DJ Dazy',
+          img: 'images/field-guide-dazy.jpg',
+          bio: [
+            "She's been moving dance floors since 1991, when she first started spinning vinyl at underground house parties on the West Coast. At a time when the scene was still largely dominated by men behind the decks, Dazy was one of the women helping carve out space, build visibility, and prove that the dance floor was bigger than the people gatekeeping it.",
+            "As one of the first women DJs on the West Coast, she helped pave the way for others in electronic music. She also founded Sisterdjs, a pioneering platform created to support and spotlight women in the scene long before that kind of visibility was common.",
+            "Because Camp DayFunk is not just about bringing in great DJs. It's about bringing in people who have actually helped shape the culture we care about.",
+            "Over the last three decades, Dazy has held residencies in Portland and Los Angeles, played across the U.S., Canada, and Thailand. Her sound lives right where Camp DayFunk loves to live. Funky, Deep & Soulful.",
+            "Dazy's style is rooted in vinyl tradition, but it is not frozen in time. It honors where house came from while still feeling alive, warm, and connected to the people in front of her.",
+            "After stepping away from regular performances, she made her much-anticipated return to the decks in July 2025. Since then, she has been reconnecting with longtime fans, reaching new audiences, launching live streams, and stepping back into the music with fresh energy and perspective.",
+            "There is something perfect about having DJ Dazy with us in the woods. An artist with history, soul, and a sound built for people who came to dance, connect, and lose track of time together.",
+            "This summer, we get to experience a West Coast house pioneer up close. Not from across a giant festival field. Not through a screen. Right there with us at camp."
+          ]
+        }
+      };
+
+      function openFgModal(artistId) {
+        var artist = artistData[artistId];
+        if (!artist) {
+          var idx;
+          do { idx = Math.floor(Math.random() * fgTeasers.length); } while (idx === fgTeaserLastIdx && fgTeasers.length > 1);
+          fgTeaserLastIdx = idx;
+          fgName.textContent = fgTeasers[idx].t;
+          fgBio.innerHTML = '';
+          var tp = document.createElement('p');
+          tp.textContent = fgTeasers[idx].b;
+          fgBio.appendChild(tp);
+          if (fgModal) fgModal.classList.add('fg-modal--no-img');
+        } else {
+          if (fgModal) fgModal.classList.remove('fg-modal--no-img');
+          fgImg.src = artist.img;
+          fgImg.alt = artist.name;
+          fgName.textContent = artist.name;
+          fgBio.innerHTML = '';
+          artist.bio.forEach(function(text) {
+            var p = document.createElement('p');
+            p.textContent = text;
+            fgBio.appendChild(p);
+          });
+        }
+        track('field_guide_open', { artist_id: artistId, has_bio: !!artist });
+        if (fgModal) fgModal.scrollTop = 0;
+        fgOverlay.classList.add('open');
+        fgOverlay.removeAttribute('aria-hidden');
+        document.body.style.overflow = 'hidden';
+        var fgCloseBtn = document.getElementById('fg-close');
+        if (fgCloseBtn) fgCloseBtn.focus(); else if (fgDismiss) fgDismiss.focus();
+      }
+
+      function closeFgModal() {
+        fgOverlay.classList.remove('open');
+        fgOverlay.setAttribute('aria-hidden', 'true');
+        if (fgModal) fgModal.classList.remove('fg-modal--no-img');
+        document.body.style.overflow = '';
+      }
+
+      document.querySelectorAll('.artist-btn').forEach(function(btn) {
+        btn.addEventListener('click', function() { openFgModal(btn.dataset.artist); });
+      });
+      if (fgClose)   fgClose.addEventListener('click', closeFgModal);
+      if (fgDismiss) fgDismiss.addEventListener('click', closeFgModal);
+      if (fgOverlay) fgOverlay.addEventListener('click', function(e) {
+        if (e.target === fgOverlay) closeFgModal();
       });
 
       /* ── Packing list localStorage persistence ── */
@@ -1603,6 +2006,118 @@
 
       checkboxes.forEach(function(cb) { cb.addEventListener('change', savePackList); });
       loadPackList();
+
+      /* ── Analytics: desktop nav section clicks ── */
+      navLinks.forEach(function(link) {
+        link.addEventListener('click', function() {
+          track('nav_click', { section: link.getAttribute('href').replace('#', ''), nav_type: 'desktop' });
+        });
+      });
+
+      /* ── Analytics: outbound link clicks ── */
+      document.querySelectorAll('a[target="_blank"]:not([data-coming-soon])').forEach(function(link) {
+        link.addEventListener('click', function() {
+          var label = link.getAttribute('aria-label') || link.textContent.trim();
+          track('outbound_click', { link_label: label, url: link.href });
+        });
+      });
+
+      /* ── Analytics: packing list print ── */
+      var printBtn = document.querySelector('[aria-label="Print packing list"]');
+      if (printBtn) printBtn.addEventListener('click', function() { track('packing_list_print'); });
+
+      /* ── Analytics: packing list first interaction ── */
+      var packTracked = false;
+      checkboxes.forEach(function(cb) {
+        cb.addEventListener('change', function() {
+          if (!packTracked) { track('packing_list_start'); packTracked = true; }
+        });
+      });
+
+      /* ── Cassette easter egg: sliding player dock ── */
+      var playerBar      = document.getElementById('player-bar');
+      var playerMinimize = document.getElementById('player-minimize');
+      var playerExpand   = document.getElementById('player-expand');
+      var playerStop     = document.getElementById('player-stop');
+      var playerPrev     = document.getElementById('player-prev');
+      var playerNext     = document.getElementById('player-next');
+      var playerHd       = playerBar ? playerBar.querySelector('.player-bar__hd') : null;
+      var playerIframe   = document.getElementById('player-iframe');
+      var cassetteImg    = document.getElementById('cassette-img');
+      var playerLoaded   = false;
+      var scWidget       = null;
+      var SC_SRC = 'https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/user-467880110/sets/dayfunk-minneapolis-monthly&color=%23e8610a&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&show_artwork=false';
+
+      function initScWidget() {
+        if (typeof SC !== 'undefined' && playerIframe && !scWidget) {
+          scWidget = SC.Widget(playerIframe);
+          var nowPlayingEl = document.getElementById('player-nowplaying');
+          scWidget.bind(SC.Widget.Events.PLAY, function() {
+            if (playerBar) playerBar.classList.add('playing');
+            scWidget.getCurrentSound(function(sound) {
+              if (nowPlayingEl && sound) {
+                var title = sound.title || '';
+                var sep = title.indexOf(' : ');
+                if (sep !== -1) title = title.substring(0, sep).trim();
+                nowPlayingEl.textContent = title ? 'Now playing: ' + title : '';
+              }
+            });
+          });
+          scWidget.bind(SC.Widget.Events.PAUSE, function() {
+            if (playerBar) playerBar.classList.remove('playing');
+          });
+          scWidget.bind(SC.Widget.Events.FINISH, function() {
+            if (playerBar) playerBar.classList.remove('playing');
+          });
+        }
+      }
+      function openPlayer() {
+        if (!playerLoaded) {
+          playerIframe.src = SC_SRC;
+          playerLoaded = true;
+          if (!document.getElementById('sc-widget-api')) {
+            var s = document.createElement('script');
+            s.id  = 'sc-widget-api';
+            s.src = 'https://w.soundcloud.com/player/api.js';
+            s.onload = initScWidget;
+            document.head.appendChild(s);
+          } else {
+            initScWidget();
+          }
+        }
+        if (playerBar) { playerBar.classList.add('open'); playerBar.classList.remove('minimized'); }
+        document.body.classList.add('player-open'); document.body.classList.remove('player-min');
+        track('cassette_play');
+      }
+      function minimizePlayer() {
+        if (playerBar) { playerBar.classList.remove('open'); playerBar.classList.add('minimized'); }
+        document.body.classList.remove('player-open'); document.body.classList.add('player-min');
+        track('cassette_minimize');
+      }
+      function stopPlayer() {
+        if (playerBar) { playerBar.classList.remove('open', 'minimized', 'playing'); }
+        document.body.classList.remove('player-open', 'player-min');
+        var nowPlayingEl = document.getElementById('player-nowplaying');
+        if (nowPlayingEl) nowPlayingEl.textContent = '';
+        if (scWidget) scWidget.pause();
+        track('cassette_stop');
+      }
+
+      if (cassetteImg)    cassetteImg.addEventListener('click', openPlayer);
+      if (playerMinimize) playerMinimize.addEventListener('click', function(e) { e.stopPropagation(); minimizePlayer(); });
+      if (playerExpand)   playerExpand.addEventListener('click', function(e) { e.stopPropagation(); openPlayer(); });
+      if (playerStop)     playerStop.addEventListener('click', function(e) { e.stopPropagation(); stopPlayer(); });
+      if (playerHd)       playerHd.addEventListener('click', function() {
+        if (playerBar && playerBar.classList.contains('minimized')) openPlayer();
+      });
+      if (playerPrev) playerPrev.addEventListener('click', function() {
+        if (scWidget) scWidget.prev();
+        track('cassette_prev');
+      });
+      if (playerNext) playerNext.addEventListener('click', function() {
+        if (scWidget) scWidget.next();
+        track('cassette_next');
+      });
 
     });
   </script>
