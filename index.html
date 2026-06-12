@@ -2103,7 +2103,13 @@
         track('cassette_stop');
       }
 
-      if (cassetteImg)    cassetteImg.addEventListener('click', openPlayer);
+      if (cassetteImg) cassetteImg.addEventListener('click', function() {
+        if (playerBar && playerBar.classList.contains('open')) {
+          minimizePlayer();
+        } else {
+          openPlayer();
+        }
+      });
       if (playerMinimize) playerMinimize.addEventListener('click', function(e) { e.stopPropagation(); minimizePlayer(); });
       if (playerExpand)   playerExpand.addEventListener('click', function(e) { e.stopPropagation(); openPlayer(); });
       if (playerStop)     playerStop.addEventListener('click', function(e) { e.stopPropagation(); stopPlayer(); });
