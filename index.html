@@ -1095,6 +1095,218 @@
       height: 166px;
       border: 0;
     }
+
+    /* ── Print schedule link ── */
+    .print-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: var(--font-disp);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--dim);
+      text-decoration: none;
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: 1px;
+      cursor: pointer;
+      background: none;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+    }
+    .print-link:hover { color: var(--text); border-color: var(--text); }
+
+    /* ── Print view (hidden on screen) ── */
+    #print-schedule { display: none; }
+
+    @media print {
+      @page { size: landscape; margin: 0.45in 0.5in; }
+
+      body::before { display: none; }
+      body > *:not(#print-schedule) { display: none !important; }
+      .player-bar { display: none !important; }
+
+      #print-schedule {
+        display: block;
+        font-family: 'Barlow Condensed', sans-serif;
+        color: #1a1208;
+        background: #fdf6ec;
+        width: 100%;
+      }
+
+      .pr-header {
+        background: #1a1208;
+        color: #fdf6ec;
+        padding: 0.35in 0.3in 0.3in;
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        margin-bottom: 0.18in;
+      }
+      .pr-brand {
+        font-size: 28pt;
+        font-weight: 900;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        line-height: 1;
+      }
+      .pr-brand span { color: #c87800; }
+      .pr-header-right { text-align: right; }
+      .pr-title {
+        font-size: 11pt;
+        font-weight: 700;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: #c87800;
+        margin-bottom: 0.05in;
+      }
+      .pr-dates {
+        font-size: 9pt;
+        letter-spacing: 0.15em;
+        color: rgba(253,246,236,0.55);
+        text-transform: uppercase;
+      }
+
+      /* Two-day grid */
+      .pr-days {
+        display: grid;
+        grid-template-columns: 1fr 1px 1fr;
+        gap: 0 0.18in;
+        margin-bottom: 0.15in;
+      }
+      .pr-divider { background: #e0cdb0; width: 1px; }
+
+      .pr-day-hd {
+        font-size: 13pt;
+        font-weight: 900;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #e8610a;
+        border-bottom: 1.5pt solid #e8610a;
+        padding-bottom: 0.05in;
+        margin-bottom: 0.1in;
+      }
+
+      /* Stage sub-grid within each day */
+      .pr-stages {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1.1fr;
+        gap: 0 0.12in;
+      }
+      .pr-stage-hd {
+        font-size: 10pt;
+        font-weight: 900;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: #c87800;
+        margin-bottom: 0.04in;
+      }
+      .pr-stage-meta {
+        font-size: 7pt;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: #8a6840;
+        margin-bottom: 0.07in;
+      }
+      .pr-slot {
+        font-size: 8pt;
+        padding: 0.028in 0;
+        border-bottom: 0.5pt solid #e0cdb0;
+        display: flex;
+        gap: 0.08in;
+      }
+      .pr-slot-time {
+        color: #8a6840;
+        min-width: 0.55in;
+        flex-shrink: 0;
+      }
+      .pr-slot-name { font-weight: 700; }
+
+      /* DiscoKnect column */
+      .pr-dk-slot {
+        font-size: 7.5pt;
+        padding: 0.032in 0.06in;
+        border-bottom: 0.5pt solid #e0cdb0;
+      }
+      .pr-dk-time {
+        font-weight: 700;
+        color: #1a1208;
+        margin-bottom: 0.02in;
+      }
+      .pr-dk-ch {
+        display: flex;
+        align-items: center;
+        gap: 0.06in;
+        color: #5a4020;
+        line-height: 1.6;
+      }
+      .pr-dk-dot {
+        width: 6pt;
+        height: 6pt;
+        border-radius: 50%;
+        flex-shrink: 0;
+        display: inline-block;
+      }
+      .pr-dk-dot.r { background: #d42010; }
+      .pr-dk-dot.g { background: #2a9040; }
+      .pr-dk-dot.b { background: #2a55db; }
+
+      /* Activities footer */
+      .pr-activities {
+        border-top: 1pt solid #e0cdb0;
+        padding-top: 0.1in;
+        margin-top: 0.1in;
+      }
+      .pr-act-label {
+        font-size: 7pt;
+        font-weight: 700;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: #8a6840;
+        margin-bottom: 0.06in;
+      }
+      .pr-act-days {
+        display: grid;
+        grid-template-columns: 1fr 1fr 0.5fr;
+        gap: 0 0.18in;
+      }
+      .pr-act-day-hd {
+        font-size: 8pt;
+        font-weight: 900;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #1a1208;
+        margin-bottom: 0.04in;
+      }
+      .pr-act-item {
+        font-size: 7.5pt;
+        display: flex;
+        gap: 0.06in;
+        padding: 0.02in 0;
+        border-bottom: 0.5pt solid #e0cdb0;
+      }
+      .pr-act-time {
+        color: #8a6840;
+        min-width: 0.7in;
+        flex-shrink: 0;
+      }
+      .pr-act-hl { font-weight: 700; color: #e8610a; }
+
+      /* Footer */
+      .pr-footer {
+        margin-top: 0.1in;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 6.5pt;
+        color: #8a6840;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+      .pr-footer-url { font-weight: 700; color: #1a1208; }
+    }
   </style>
 </head>
 <body>
@@ -1430,7 +1642,6 @@
               </div>
             </div>
             <div class="btn-row" style="margin-top:1.75rem">
-              <!-- TODO: replace href with sign-up URL when available -->
               <a class="btn btn-filled" href="https://www.signupgenius.com/go/70A0E4EAEA728A2FE3-64458656-camp?useFullSite=true#/" aria-label="Sign up for a volunteer slot at Camp DayFunk" target="_blank" rel="noopener">Sign Up to Volunteer</a>
             </div>
           </div>
@@ -1568,6 +1779,9 @@
             <div class="day-col-hd">Sunday, July 19</div>
             <div class="day-item"><span class="day-time">10:30 AM</span>Check Out</div>
           </div>
+        </div>
+        <div style="margin-top:1.5rem;text-align:right">
+          <button class="print-link" onclick="window.print()" aria-label="Open printable version of the weekend schedule">⬡ Printable version</button>
         </div>
       </div>
     </section>
@@ -2130,6 +2344,199 @@
 
     });
   </script>
+
+  <!-- ══════════════════════════════════════════════════
+       PRINT SCHEDULE (hidden on screen, shown on print)
+  ══════════════════════════════════════════════════ -->
+  <div id="print-schedule" aria-hidden="true">
+
+    <div class="pr-header">
+      <div class="pr-brand">Camp <span>Day</span>Funk</div>
+      <div class="pr-header-right">
+        <div class="pr-title">Weekend Schedule</div>
+        <div class="pr-dates">July 17–19, 2026 · Northern Wisconsin</div>
+      </div>
+    </div>
+
+    <div class="pr-days">
+
+      <!-- FRIDAY -->
+      <div>
+        <div class="pr-day-hd">Friday, July 17</div>
+        <div class="pr-stages">
+          <div>
+            <div class="pr-stage-hd">Stage 1</div>
+            <div class="pr-stage-meta">Noon – 10PM</div>
+            <div class="pr-slot"><span class="pr-slot-time">12 PM</span><span class="pr-slot-name">TBD</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">1 PM</span><span class="pr-slot-name">TBD</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">2 PM</span><span class="pr-slot-name">TBD</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">3 PM</span><span class="pr-slot-name">TBD</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">4 PM</span><span class="pr-slot-name">TBD</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">5 PM</span><span class="pr-slot-name">TBD</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">6 PM</span><span class="pr-slot-name">TBD</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">7 PM</span><span class="pr-slot-name">TBD</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">8 PM</span><span class="pr-slot-name">TBD</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">9 PM</span><span class="pr-slot-name">TBD</span></div>
+          </div>
+          <div>
+            <div class="pr-stage-hd">Stage 2</div>
+            <div class="pr-stage-meta">Noon – 10PM</div>
+            <div class="pr-slot"><span class="pr-slot-time">12 PM</span><span class="pr-slot-name">TBD</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">1 PM</span><span class="pr-slot-name">TBD</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">2 PM</span><span class="pr-slot-name">TBD</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">3 PM</span><span class="pr-slot-name">TBD</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">4 PM</span><span class="pr-slot-name">TBD</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">5 PM</span><span class="pr-slot-name">TBD</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">6 PM</span><span class="pr-slot-name">TBD</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">7 PM</span><span class="pr-slot-name">TBD</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">8 PM</span><span class="pr-slot-name">TBD</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">9 PM</span><span class="pr-slot-name">TBD</span></div>
+          </div>
+          <div>
+            <div class="pr-stage-hd">DiscoKnect ★</div>
+            <div class="pr-stage-meta">10PM – 6AM</div>
+            <div class="pr-dk-slot">
+              <div class="pr-dk-time">10PM – 11PM</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot r"></span>TBD · Red</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot g"></span>TBD · Green</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot b"></span>TBD · Blue</div>
+            </div>
+            <div class="pr-dk-slot">
+              <div class="pr-dk-time">11PM – Midnight</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot r"></span>TBD · Red</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot g"></span>TBD · Green</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot b"></span>TBD · Blue</div>
+            </div>
+            <div class="pr-dk-slot">
+              <div class="pr-dk-time">Midnight – 2AM</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot r"></span>TBD · Red</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot g"></span>TBD · Green</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot b"></span>TBD · Blue</div>
+            </div>
+            <div class="pr-dk-slot">
+              <div class="pr-dk-time">2AM – 4AM</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot r"></span>TBD · Red</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot g"></span>TBD · Green</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot b"></span>TBD · Blue</div>
+            </div>
+            <div class="pr-dk-slot">
+              <div class="pr-dk-time">4AM – 6AM</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot r"></span>TBD · Red</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot g"></span>TBD · Green</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot b"></span>TBD · Blue</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pr-divider"></div>
+
+      <!-- SATURDAY -->
+      <div>
+        <div class="pr-day-hd">Saturday, July 18</div>
+        <div class="pr-stages">
+          <div>
+            <div class="pr-stage-hd">Stage 1</div>
+            <div class="pr-stage-meta">Noon – 10PM</div>
+            <div class="pr-slot"><span class="pr-slot-time">12 PM</span><span class="pr-slot-name">TBD</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">1 PM</span><span class="pr-slot-name">TBD</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">2 PM</span><span class="pr-slot-name">TBD</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">3 PM</span><span class="pr-slot-name">TBD</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">4 PM</span><span class="pr-slot-name">TBD</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">5 PM</span><span class="pr-slot-name">TBD</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">6 PM</span><span class="pr-slot-name">TBD</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">7 PM</span><span class="pr-slot-name">TBD</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">8 PM</span><span class="pr-slot-name">TBD</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">9 PM</span><span class="pr-slot-name">TBD</span></div>
+          </div>
+          <div>
+            <div class="pr-stage-hd">Stage 2</div>
+            <div class="pr-stage-meta">Noon – 10PM</div>
+            <div class="pr-slot"><span class="pr-slot-time">12 PM</span><span class="pr-slot-name">TBD</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">1 PM</span><span class="pr-slot-name">TBD</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">2 PM</span><span class="pr-slot-name">TBD</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">3 PM</span><span class="pr-slot-name">TBD</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">4 PM</span><span class="pr-slot-name">TBD</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">5 PM</span><span class="pr-slot-name">TBD</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">6 PM</span><span class="pr-slot-name">TBD</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">7 PM</span><span class="pr-slot-name">TBD</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">8 PM</span><span class="pr-slot-name">TBD</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">9 PM</span><span class="pr-slot-name">TBD</span></div>
+          </div>
+          <div>
+            <div class="pr-stage-hd">DiscoKnect ★</div>
+            <div class="pr-stage-meta">10PM – 6AM</div>
+            <div class="pr-dk-slot">
+              <div class="pr-dk-time">10PM – 11PM</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot r"></span>TBD · Red</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot g"></span>TBD · Green</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot b"></span>TBD · Blue</div>
+            </div>
+            <div class="pr-dk-slot">
+              <div class="pr-dk-time">11PM – Midnight</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot r"></span>TBD · Red</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot g"></span>TBD · Green</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot b"></span>TBD · Blue</div>
+            </div>
+            <div class="pr-dk-slot">
+              <div class="pr-dk-time">Midnight – 2AM</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot r"></span>TBD · Red</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot g"></span>TBD · Green</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot b"></span>TBD · Blue</div>
+            </div>
+            <div class="pr-dk-slot">
+              <div class="pr-dk-time">2AM – 4AM</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot r"></span>TBD · Red</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot g"></span>TBD · Green</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot b"></span>TBD · Blue</div>
+            </div>
+            <div class="pr-dk-slot">
+              <div class="pr-dk-time">4AM – 6AM</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot r"></span>TBD · Red</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot g"></span>TBD · Green</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot b"></span>TBD · Blue</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /.pr-days -->
+
+    <div class="pr-activities">
+      <div class="pr-act-label">Food + Activities</div>
+      <div class="pr-act-days">
+        <div>
+          <div class="pr-act-day-hd">Friday, July 17</div>
+          <div class="pr-act-item"><span class="pr-act-time">12:00 PM</span>Gates Open</div>
+          <div class="pr-act-item"><span class="pr-act-time">1:00 PM</span>Nacho Bar</div>
+          <div class="pr-act-item"><span class="pr-act-time">6:00 PM</span>Flag Raising</div>
+          <div class="pr-act-item"><span class="pr-act-time">7:00 PM</span>Dinner</div>
+          <div class="pr-act-item pr-act-hl"><span class="pr-act-time">10:00 PM</span>DiscoKnect Begins</div>
+          <div class="pr-act-item"><span class="pr-act-time">11:00 PM</span>Snack</div>
+        </div>
+        <div>
+          <div class="pr-act-day-hd">Saturday, July 18</div>
+          <div class="pr-act-item"><span class="pr-act-time">9:00 AM</span>Coffee Bar</div>
+          <div class="pr-act-item"><span class="pr-act-time">9:00 AM</span>Yoga</div>
+          <div class="pr-act-item"><span class="pr-act-time">10:00 AM</span>Breakfast</div>
+          <div class="pr-act-item"><span class="pr-act-time">11AM – 4PM</span>Activities, Yard Games + Lunch</div>
+          <div class="pr-act-item"><span class="pr-act-time">7:00 PM</span>Dinner</div>
+          <div class="pr-act-item pr-act-hl"><span class="pr-act-time">10:00 PM</span>DiscoKnect Begins</div>
+          <div class="pr-act-item"><span class="pr-act-time">11:00 PM</span>Snack</div>
+        </div>
+        <div>
+          <div class="pr-act-day-hd">Sunday, July 19</div>
+          <div class="pr-act-item"><span class="pr-act-time">10:30 AM</span>Check Out</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pr-footer">
+      <span class="pr-footer-url">campdayfunk.com</span>
+      <span>★ DiscoKnect: 3 DJs play simultaneously · listeners choose their channel on wireless headphones</span>
+    </div>
+
+  </div><!-- /#print-schedule -->
 
 </body>
 </html>
