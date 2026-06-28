@@ -518,7 +518,12 @@
     ═══════════════════════════════════════════════════ */
     .hp-layout { display: grid; grid-template-columns: 1fr 200px; gap: 3rem; align-items: start; }
 
-    .deposit-card { background: var(--bg-mid); border: 1.5px solid var(--rule); padding: 2rem 1.5rem; text-align: center; }
+    .deposit-card { background: var(--bg-mid); border: 1.5px solid var(--rule); padding: 2rem 1.5rem; text-align: center; transition: border-color 0.18s, background 0.18s; }
+    .deposit-card:hover { border-color: var(--orange); background: var(--bg); }
+    .partner-card { background: var(--bg-mid); border: 1px solid var(--rule); transition: border-color 0.18s, background 0.18s; }
+    .partner-card:hover { border-color: var(--orange); background: var(--bg); }
+    .partner-card-dark { background: var(--text); border: 1px solid var(--rule); transition: border-color 0.18s, background 0.18s; }
+    .partner-card-dark:hover { border-color: var(--orange); background: #2e200a; }
     .deposit-amt  { font-family: var(--font-disp); font-size: 4.5rem; font-weight: 900; color: var(--orange); line-height: 1; }
     .deposit-lbl  { font-family: var(--font-disp); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--muted); margin-top: 0.2rem; }
     .deposit-sub  { font-family: var(--font-disp); font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--faint); margin-top: 0.3rem; }
@@ -704,7 +709,7 @@
        RESPONSIVE
     ═══════════════════════════════════════════════════ */
     @media (max-width: 767px) {
-      .section { padding: 3.5rem 1.5rem; scroll-margin-top: 1rem; }
+      .section { padding: 3.5rem 1.5rem 5rem; scroll-margin-top: 1rem; }
       .two-col, .two-col.wide { grid-template-columns: 1fr; gap: 2rem; }
       .check-grid   { grid-template-columns: 1fr; }
       .hp-layout    { grid-template-columns: 1fr; }
@@ -714,7 +719,7 @@
       .stage-grid   { grid-template-columns: 1fr; }
       .daily-grid   { grid-template-columns: 1fr; }
       .faq-grid     { grid-template-columns: 1fr; }
-      .site-footer  { flex-direction: column; align-items: flex-start; gap: 1rem; }
+      .site-footer  { flex-direction: column; align-items: flex-start; gap: 1rem; padding-bottom: calc(4rem + env(safe-area-inset-bottom, 0px)); }
       .section__bg  { font-size: clamp(5rem, 35vw, 10rem); opacity: 0.6; }
       .two-col > *, .hp-features .hp-feat, .stage-grid .stage-col,
       .daily-grid .day-col, .faq-grid .faq-item, .check-grid > div { min-width: 0; }
@@ -1490,18 +1495,18 @@
             <p class="eyebrow">Before You Arrive</p>
             <h2 id="waiver-h" class="sec-title">Waiver &amp;<br>Check-In</h2>
             <p style="font-size:1rem;line-height:1.8;color:var(--muted);margin-bottom:1.25rem">
-              <strong>New this year: all campers are required to sign the waiver before arriving at camp.</strong> Complete your digital waiver in advance, then present it at the gate on your phone or as a printed QR proof. Camp leads will scan your code and verify your ID on arrival. You will not be permitted to enter without a completed waiver.
+              <strong>New this year: all campers are required to sign the waiver before arriving at camp.</strong> Complete your digital waiver in advance, then present it at the gate on your phone or as a printed QR proof. Camp leads will scan your code and verify your ID on arrival. <strong>You will not be permitted to enter without a completed waiver.</strong>
             </p>
             <div class="btn-row">
-              <a class="btn btn-filled" href="http://submerge.live/campdayfunk" target="_blank" rel="noopener noreferrer" aria-label="Sign the Camp DayFunk waiver" data-coming-soon>Sign Waiver</a>
-              <a class="btn btn-orange" href="http://submerge.live/campdayfunk" target="_blank" rel="noopener noreferrer" aria-label="View your camp check-in QR code" data-coming-soon>View My QR Code</a>
+              <a class="btn btn-filled" href="https://submerge.live/campdayfunk" target="_blank" rel="noopener noreferrer" aria-label="Sign the Camp DayFunk waiver">Sign Waiver</a>
+              <a class="btn btn-orange" href="https://submerge.live/campdayfunk" target="_blank" rel="noopener noreferrer" aria-label="View your camp check-in QR code">View My QR Code</a>
             </div>
           </div>
           <div class="steps-wrap">
             <p class="eyebrow" style="margin-bottom:.65rem">Check-In Steps</p>
             <div class="step-m"><span class="step-m-n">1</span><span class="step-m-txt">Open your QR code on your phone before you arrive at the gate (or bring your completed waiver printout with QR code on it).</span></div>
             <div class="step-m"><span class="step-m-n">2</span><span class="step-m-txt">Show it to the camp lead at the gate. They'll scan it and verify your ID.</span></div>
-            <div class="step-m"><span class="step-m-n">3</span><span class="step-m-txt">The camp lead will hand you a swag bag with your DiscoKnect headphones (headphones require a <a href="#headphones" style="color:var(--orange)">$25 deposit</a>, fully refundable).</span></div>
+            <div class="step-m"><span class="step-m-n">3</span><span class="step-m-txt">The camp lead will hand you a swag bag with your DiscoKnect headphones (headphones require a <a href="#headphones" style="color:var(--orange)">$26 deposit</a>, fully refundable).</span></div>
             <div class="step-m"><span class="step-m-n">4</span><span class="step-m-txt" style="color:var(--green);font-weight:500">You're in! Enjoy camp.</span></div>
           </div>
         </div>
@@ -1510,7 +1515,7 @@
           <p class="eyebrow" style="margin-bottom:.65rem">Check-In Steps</p>
           <div class="step-m"><span class="step-m-n">1</span><span class="step-m-txt">Open your QR code on your phone before you arrive at the gate (or bring your completed waiver printout with QR code on it).</span></div>
           <div class="step-m"><span class="step-m-n">2</span><span class="step-m-txt">Show it to the camp lead at the gate. They'll scan it and verify your ID.</span></div>
-          <div class="step-m"><span class="step-m-n">3</span><span class="step-m-txt">The camp lead will hand you a swag bag with your DiscoKnect headphones (headphones require a <a href="#headphones" style="color:var(--orange)">$25 deposit</a>, fully refundable).</span></div>
+          <div class="step-m"><span class="step-m-n">3</span><span class="step-m-txt">The camp lead will hand you a swag bag with your DiscoKnect headphones (headphones require a <a href="#headphones" style="color:var(--orange)">$26 deposit</a>, fully refundable).</span></div>
           <div class="step-m"><span class="step-m-n">4</span><span class="step-m-txt" style="color:var(--green);font-weight:500">You're in! Enjoy camp.</span></div>
         </div>
       </div>
@@ -1528,9 +1533,9 @@
         <div class="hp-layout">
           <div>
             <p style="font-size:1rem;line-height:1.8;color:var(--muted);margin-bottom:1rem">After 10PM, the only way to hear the DJs is through the DiscoKnect wireless headphone soundsystem. It is the secret ingredient to camp after dark, and you really won't want to miss it.</p>
-            <p style="font-size:1rem;line-height:1.8;color:var(--muted);margin-bottom:1.75rem">Checking out a pair is completely optional. Add a $25 deposit when you sign your waiver and get every dollar back when you return the headphones at the end of the weekend.</p>
+            <p style="font-size:1rem;line-height:1.8;color:var(--muted);margin-bottom:1.75rem">Checking out a pair is completely optional. Add a $26 deposit when you sign your waiver and get every dollar back when you return the headphones at the end of the weekend.</p>
             <div class="btn-row">
-              <a class="btn btn-filled" href="http://submerge.live/campdayfunk" target="_blank" rel="noopener noreferrer" aria-label="Pay the $25 DiscoKnect headphone deposit" data-coming-soon>Pay $25 Headphone Deposit</a>
+              <a class="btn btn-filled" href="https://submerge.live/campdayfunk" target="_blank" rel="noopener noreferrer" aria-label="Pay the $26 DiscoKnect headphone deposit">Pay $26 Headphone Deposit</a>
             </div>
             <div class="hp-features">
               <div class="hp-feat">
@@ -1542,17 +1547,17 @@
                 <div class="hp-feat-txt">These headphones are custom tuned to a wireless frequency at camp. They won't pick up anything outside the grounds.</div>
               </div>
               <div class="hp-feat full">
-                <div class="hp-feat-eye">Getting Your $25 Back</div>
+                <div class="hp-feat-eye">Getting Your $26 Back</div>
                 <div class="hp-feat-txt">Return your headphones to a camp lead before you head home and your deposit comes right back. Refunds go back the same way you paid.</div>
               </div>
             </div>
           </div>
-          <div class="deposit-card">
+          <a class="deposit-card" href="https://submerge.live/campdayfunk" target="_blank" rel="noopener noreferrer" aria-label="Pay the $26 headphone deposit — fully refundable" style="text-decoration:none;display:block">
             <div style="font-size:2.5rem;text-align:center;margin-bottom:.5rem" role="img" aria-label="Headphones">🎧</div>
-            <div class="deposit-amt">$25</div>
+            <div class="deposit-amt">$26</div>
             <div class="deposit-lbl">Deposit</div>
             <div class="deposit-sub">Fully refundable</div>
-          </div>
+          </a>
         </div>
       </div>
     </section>
@@ -1584,7 +1589,7 @@
               </div>
             </div>
           </div>
-          <a href="https://submerge.live" target="_blank" rel="noopener noreferrer" aria-label="Submerge.Live streaming platform" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.85rem;min-height:240px;border:1px solid var(--rule);background:var(--text);transition:background .18s;text-decoration:none;padding:1.5rem">
+          <a href="https://submerge.live" target="_blank" rel="noopener noreferrer" aria-label="Submerge.Live streaming platform" class="partner-card-dark" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.85rem;min-height:240px;text-decoration:none;padding:1.5rem">
             <img src="images/submerge-logo.png" alt="Submerge.Live" style="width:200px;height:auto" loading="lazy">
             <span class="deposit-sub" style="text-align:center;line-height:1.6;color:rgba(253,246,236,0.55)">Streaming for camp is hosted by our friends<br>at Submerge.Live</span>
           </a>
@@ -1607,7 +1612,7 @@
             <p style="font-size:1rem;line-height:1.8;color:var(--muted);margin-bottom:1.75rem">Explore the campgrounds, find clues, and unlock the full Camp DayFunk experience. The hunt runs all weekend long.</p>
             <a class="btn btn-filled" href="https://www.pluralisticrecords.com/campdayfunk" target="_blank" rel="noopener noreferrer" aria-label="Play the Camp DayFunk scavenger hunt on Pluralistic Records (opens in new tab)">Play the Game</a>
           </div>
-          <a href="https://www.pluralisticrecords.com/campdayfunk" target="_blank" rel="noopener noreferrer" aria-label="Play the Camp DayFunk scavenger hunt on Pluralistic Records" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.85rem;min-height:280px;border:1px solid var(--rule);background:var(--bg-mid);transition:background .18s;text-decoration:none;padding:1.5rem">
+          <a href="https://www.pluralisticrecords.com/campdayfunk" target="_blank" rel="noopener noreferrer" aria-label="Play the Camp DayFunk scavenger hunt on Pluralistic Records" class="partner-card" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.85rem;min-height:280px;text-decoration:none;padding:1.5rem">
             <img src="images/pluralistic-logo.png"
                  alt="Pluralistic Records"
                  style="width:160px;height:auto"
@@ -1625,7 +1630,7 @@
     ══════════════════════════════════════════════════ -->
     <section id="volunteer" class="section" aria-labelledby="vol-h">
       <div class="section__inner section__content fade-up">
-        <div class="two-col wide">
+        <div class="hp-layout">
           <div>
             <p class="eyebrow">Intentional Community</p>
             <h2 id="vol-h" class="sec-title">Volunteer</h2>
@@ -1690,30 +1695,30 @@
           <div class="stage-col mob-visible" data-col="0">
             <div class="stage-hd">Stage 1</div>
             <div class="stage-meta js-day-meta">Noon – 10PM · Friday</div>
-            <div class="slot">12 PM · TBD</div>
-            <div class="slot">1 PM · TBD</div>
-            <div class="slot">2 PM · TBD</div>
-            <div class="slot">3 PM · TBD</div>
-            <div class="slot">4 PM · TBD</div>
-            <div class="slot">5 PM · TBD</div>
-            <div class="slot">6 PM · TBD</div>
-            <div class="slot">7 PM · TBD</div>
-            <div class="slot">8 PM · TBD</div>
-            <div class="slot">9 PM · TBD</div>
+            <div class="slot">12 PM · TBA</div>
+            <div class="slot">1 PM · TBA</div>
+            <div class="slot">2 PM · TBA</div>
+            <div class="slot">3 PM · TBA</div>
+            <div class="slot">4 PM · TBA</div>
+            <div class="slot">5 PM · TBA</div>
+            <div class="slot">6 PM · TBA</div>
+            <div class="slot">7 PM · TBA</div>
+            <div class="slot">8 PM · TBA</div>
+            <div class="slot">9 PM · TBA</div>
           </div>
           <div class="stage-col" data-col="1">
             <div class="stage-hd">Stage 2</div>
             <div class="stage-meta js-day-meta">Noon – 10PM · Friday</div>
-            <div class="slot">12 PM · TBD</div>
-            <div class="slot">1 PM · TBD</div>
-            <div class="slot">2 PM · TBD</div>
-            <div class="slot">3 PM · TBD</div>
-            <div class="slot">4 PM · TBD</div>
-            <div class="slot">5 PM · TBD</div>
-            <div class="slot">6 PM · TBD</div>
-            <div class="slot">7 PM · TBD</div>
-            <div class="slot">8 PM · TBD</div>
-            <div class="slot">9 PM · TBD</div>
+            <div class="slot">12 PM · TBA</div>
+            <div class="slot">1 PM · TBA</div>
+            <div class="slot">2 PM · TBA</div>
+            <div class="slot">3 PM · TBA</div>
+            <div class="slot">4 PM · TBA</div>
+            <div class="slot">5 PM · TBA</div>
+            <div class="slot">6 PM · TBA</div>
+            <div class="slot">7 PM · TBA</div>
+            <div class="slot">8 PM · TBA</div>
+            <div class="slot">9 PM · TBA</div>
           </div>
           <div class="stage-col dk" data-col="2">
             <div class="stage-hd o">DiscoKnect</div>
@@ -1721,33 +1726,33 @@
             <p style="font-size:.8rem;color:rgba(253,246,236,.45);line-height:1.55;margin-bottom:.85rem">3 DJs play simultaneously each hour. Listeners pick their channel on their headphones.</p>
             <div class="dj-slot">
               <div class="dj-time">10PM – 11PM</div>
-              <div class="dj-ch"><div class="dj-dot r"></div>TBD · Red</div>
-              <div class="dj-ch"><div class="dj-dot g"></div>TBD · Green</div>
-              <div class="dj-ch"><div class="dj-dot b"></div>TBD · Blue</div>
+              <div class="dj-ch"><div class="dj-dot r"></div>TBA · Red</div>
+              <div class="dj-ch"><div class="dj-dot g"></div>TBA · Green</div>
+              <div class="dj-ch"><div class="dj-dot b"></div>TBA · Blue</div>
             </div>
             <div class="dj-slot">
               <div class="dj-time">11PM – Midnight</div>
-              <div class="dj-ch"><div class="dj-dot r"></div>TBD · Red</div>
-              <div class="dj-ch"><div class="dj-dot g"></div>TBD · Green</div>
-              <div class="dj-ch"><div class="dj-dot b"></div>TBD · Blue</div>
+              <div class="dj-ch"><div class="dj-dot r"></div>TBA · Red</div>
+              <div class="dj-ch"><div class="dj-dot g"></div>TBA · Green</div>
+              <div class="dj-ch"><div class="dj-dot b"></div>TBA · Blue</div>
             </div>
             <div class="dj-slot">
               <div class="dj-time">Midnight – 2AM</div>
-              <div class="dj-ch"><div class="dj-dot r"></div>TBD · Red</div>
-              <div class="dj-ch"><div class="dj-dot g"></div>TBD · Green</div>
-              <div class="dj-ch"><div class="dj-dot b"></div>TBD · Blue</div>
+              <div class="dj-ch"><div class="dj-dot r"></div>TBA · Red</div>
+              <div class="dj-ch"><div class="dj-dot g"></div>TBA · Green</div>
+              <div class="dj-ch"><div class="dj-dot b"></div>TBA · Blue</div>
             </div>
             <div class="dj-slot">
               <div class="dj-time">2AM – 4AM</div>
-              <div class="dj-ch"><div class="dj-dot r"></div>TBD · Red</div>
-              <div class="dj-ch"><div class="dj-dot g"></div>TBD · Green</div>
-              <div class="dj-ch"><div class="dj-dot b"></div>TBD · Blue</div>
+              <div class="dj-ch"><div class="dj-dot r"></div>TBA · Red</div>
+              <div class="dj-ch"><div class="dj-dot g"></div>TBA · Green</div>
+              <div class="dj-ch"><div class="dj-dot b"></div>TBA · Blue</div>
             </div>
             <div class="dj-slot">
               <div class="dj-time">4AM – 6AM</div>
-              <div class="dj-ch"><div class="dj-dot r"></div>TBD · Red</div>
-              <div class="dj-ch"><div class="dj-dot g"></div>TBD · Green</div>
-              <div class="dj-ch"><div class="dj-dot b"></div>TBD · Blue</div>
+              <div class="dj-ch"><div class="dj-dot r"></div>TBA · Red</div>
+              <div class="dj-ch"><div class="dj-dot g"></div>TBA · Green</div>
+              <div class="dj-ch"><div class="dj-dot b"></div>TBA · Blue</div>
             </div>
           </div>
         </div>
@@ -2367,63 +2372,63 @@
           <div>
             <div class="pr-stage-hd">Stage 1</div>
             <div class="pr-stage-meta">Noon – 10PM</div>
-            <div class="pr-slot"><span class="pr-slot-time">12 PM</span><span class="pr-slot-name">TBD</span></div>
-            <div class="pr-slot"><span class="pr-slot-time">1 PM</span><span class="pr-slot-name">TBD</span></div>
-            <div class="pr-slot"><span class="pr-slot-time">2 PM</span><span class="pr-slot-name">TBD</span></div>
-            <div class="pr-slot"><span class="pr-slot-time">3 PM</span><span class="pr-slot-name">TBD</span></div>
-            <div class="pr-slot"><span class="pr-slot-time">4 PM</span><span class="pr-slot-name">TBD</span></div>
-            <div class="pr-slot"><span class="pr-slot-time">5 PM</span><span class="pr-slot-name">TBD</span></div>
-            <div class="pr-slot"><span class="pr-slot-time">6 PM</span><span class="pr-slot-name">TBD</span></div>
-            <div class="pr-slot"><span class="pr-slot-time">7 PM</span><span class="pr-slot-name">TBD</span></div>
-            <div class="pr-slot"><span class="pr-slot-time">8 PM</span><span class="pr-slot-name">TBD</span></div>
-            <div class="pr-slot"><span class="pr-slot-time">9 PM</span><span class="pr-slot-name">TBD</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">12 PM</span><span class="pr-slot-name">TBA</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">1 PM</span><span class="pr-slot-name">TBA</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">2 PM</span><span class="pr-slot-name">TBA</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">3 PM</span><span class="pr-slot-name">TBA</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">4 PM</span><span class="pr-slot-name">TBA</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">5 PM</span><span class="pr-slot-name">TBA</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">6 PM</span><span class="pr-slot-name">TBA</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">7 PM</span><span class="pr-slot-name">TBA</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">8 PM</span><span class="pr-slot-name">TBA</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">9 PM</span><span class="pr-slot-name">TBA</span></div>
           </div>
           <div>
             <div class="pr-stage-hd">Stage 2</div>
             <div class="pr-stage-meta">Noon – 10PM</div>
-            <div class="pr-slot"><span class="pr-slot-time">12 PM</span><span class="pr-slot-name">TBD</span></div>
-            <div class="pr-slot"><span class="pr-slot-time">1 PM</span><span class="pr-slot-name">TBD</span></div>
-            <div class="pr-slot"><span class="pr-slot-time">2 PM</span><span class="pr-slot-name">TBD</span></div>
-            <div class="pr-slot"><span class="pr-slot-time">3 PM</span><span class="pr-slot-name">TBD</span></div>
-            <div class="pr-slot"><span class="pr-slot-time">4 PM</span><span class="pr-slot-name">TBD</span></div>
-            <div class="pr-slot"><span class="pr-slot-time">5 PM</span><span class="pr-slot-name">TBD</span></div>
-            <div class="pr-slot"><span class="pr-slot-time">6 PM</span><span class="pr-slot-name">TBD</span></div>
-            <div class="pr-slot"><span class="pr-slot-time">7 PM</span><span class="pr-slot-name">TBD</span></div>
-            <div class="pr-slot"><span class="pr-slot-time">8 PM</span><span class="pr-slot-name">TBD</span></div>
-            <div class="pr-slot"><span class="pr-slot-time">9 PM</span><span class="pr-slot-name">TBD</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">12 PM</span><span class="pr-slot-name">TBA</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">1 PM</span><span class="pr-slot-name">TBA</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">2 PM</span><span class="pr-slot-name">TBA</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">3 PM</span><span class="pr-slot-name">TBA</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">4 PM</span><span class="pr-slot-name">TBA</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">5 PM</span><span class="pr-slot-name">TBA</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">6 PM</span><span class="pr-slot-name">TBA</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">7 PM</span><span class="pr-slot-name">TBA</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">8 PM</span><span class="pr-slot-name">TBA</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">9 PM</span><span class="pr-slot-name">TBA</span></div>
           </div>
           <div>
             <div class="pr-stage-hd">DiscoKnect ★</div>
             <div class="pr-stage-meta">10PM – 6AM</div>
             <div class="pr-dk-slot">
               <div class="pr-dk-time">10PM – 11PM</div>
-              <div class="pr-dk-ch"><span class="pr-dk-dot r"></span>TBD · Red</div>
-              <div class="pr-dk-ch"><span class="pr-dk-dot g"></span>TBD · Green</div>
-              <div class="pr-dk-ch"><span class="pr-dk-dot b"></span>TBD · Blue</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot r"></span>TBA · Red</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot g"></span>TBA · Green</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot b"></span>TBA · Blue</div>
             </div>
             <div class="pr-dk-slot">
               <div class="pr-dk-time">11PM – Midnight</div>
-              <div class="pr-dk-ch"><span class="pr-dk-dot r"></span>TBD · Red</div>
-              <div class="pr-dk-ch"><span class="pr-dk-dot g"></span>TBD · Green</div>
-              <div class="pr-dk-ch"><span class="pr-dk-dot b"></span>TBD · Blue</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot r"></span>TBA · Red</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot g"></span>TBA · Green</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot b"></span>TBA · Blue</div>
             </div>
             <div class="pr-dk-slot">
               <div class="pr-dk-time">Midnight – 2AM</div>
-              <div class="pr-dk-ch"><span class="pr-dk-dot r"></span>TBD · Red</div>
-              <div class="pr-dk-ch"><span class="pr-dk-dot g"></span>TBD · Green</div>
-              <div class="pr-dk-ch"><span class="pr-dk-dot b"></span>TBD · Blue</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot r"></span>TBA · Red</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot g"></span>TBA · Green</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot b"></span>TBA · Blue</div>
             </div>
             <div class="pr-dk-slot">
               <div class="pr-dk-time">2AM – 4AM</div>
-              <div class="pr-dk-ch"><span class="pr-dk-dot r"></span>TBD · Red</div>
-              <div class="pr-dk-ch"><span class="pr-dk-dot g"></span>TBD · Green</div>
-              <div class="pr-dk-ch"><span class="pr-dk-dot b"></span>TBD · Blue</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot r"></span>TBA · Red</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot g"></span>TBA · Green</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot b"></span>TBA · Blue</div>
             </div>
             <div class="pr-dk-slot">
               <div class="pr-dk-time">4AM – 6AM</div>
-              <div class="pr-dk-ch"><span class="pr-dk-dot r"></span>TBD · Red</div>
-              <div class="pr-dk-ch"><span class="pr-dk-dot g"></span>TBD · Green</div>
-              <div class="pr-dk-ch"><span class="pr-dk-dot b"></span>TBD · Blue</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot r"></span>TBA · Red</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot g"></span>TBA · Green</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot b"></span>TBA · Blue</div>
             </div>
           </div>
         </div>
@@ -2438,63 +2443,63 @@
           <div>
             <div class="pr-stage-hd">Stage 1</div>
             <div class="pr-stage-meta">Noon – 10PM</div>
-            <div class="pr-slot"><span class="pr-slot-time">12 PM</span><span class="pr-slot-name">TBD</span></div>
-            <div class="pr-slot"><span class="pr-slot-time">1 PM</span><span class="pr-slot-name">TBD</span></div>
-            <div class="pr-slot"><span class="pr-slot-time">2 PM</span><span class="pr-slot-name">TBD</span></div>
-            <div class="pr-slot"><span class="pr-slot-time">3 PM</span><span class="pr-slot-name">TBD</span></div>
-            <div class="pr-slot"><span class="pr-slot-time">4 PM</span><span class="pr-slot-name">TBD</span></div>
-            <div class="pr-slot"><span class="pr-slot-time">5 PM</span><span class="pr-slot-name">TBD</span></div>
-            <div class="pr-slot"><span class="pr-slot-time">6 PM</span><span class="pr-slot-name">TBD</span></div>
-            <div class="pr-slot"><span class="pr-slot-time">7 PM</span><span class="pr-slot-name">TBD</span></div>
-            <div class="pr-slot"><span class="pr-slot-time">8 PM</span><span class="pr-slot-name">TBD</span></div>
-            <div class="pr-slot"><span class="pr-slot-time">9 PM</span><span class="pr-slot-name">TBD</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">12 PM</span><span class="pr-slot-name">TBA</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">1 PM</span><span class="pr-slot-name">TBA</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">2 PM</span><span class="pr-slot-name">TBA</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">3 PM</span><span class="pr-slot-name">TBA</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">4 PM</span><span class="pr-slot-name">TBA</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">5 PM</span><span class="pr-slot-name">TBA</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">6 PM</span><span class="pr-slot-name">TBA</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">7 PM</span><span class="pr-slot-name">TBA</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">8 PM</span><span class="pr-slot-name">TBA</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">9 PM</span><span class="pr-slot-name">TBA</span></div>
           </div>
           <div>
             <div class="pr-stage-hd">Stage 2</div>
             <div class="pr-stage-meta">Noon – 10PM</div>
-            <div class="pr-slot"><span class="pr-slot-time">12 PM</span><span class="pr-slot-name">TBD</span></div>
-            <div class="pr-slot"><span class="pr-slot-time">1 PM</span><span class="pr-slot-name">TBD</span></div>
-            <div class="pr-slot"><span class="pr-slot-time">2 PM</span><span class="pr-slot-name">TBD</span></div>
-            <div class="pr-slot"><span class="pr-slot-time">3 PM</span><span class="pr-slot-name">TBD</span></div>
-            <div class="pr-slot"><span class="pr-slot-time">4 PM</span><span class="pr-slot-name">TBD</span></div>
-            <div class="pr-slot"><span class="pr-slot-time">5 PM</span><span class="pr-slot-name">TBD</span></div>
-            <div class="pr-slot"><span class="pr-slot-time">6 PM</span><span class="pr-slot-name">TBD</span></div>
-            <div class="pr-slot"><span class="pr-slot-time">7 PM</span><span class="pr-slot-name">TBD</span></div>
-            <div class="pr-slot"><span class="pr-slot-time">8 PM</span><span class="pr-slot-name">TBD</span></div>
-            <div class="pr-slot"><span class="pr-slot-time">9 PM</span><span class="pr-slot-name">TBD</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">12 PM</span><span class="pr-slot-name">TBA</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">1 PM</span><span class="pr-slot-name">TBA</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">2 PM</span><span class="pr-slot-name">TBA</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">3 PM</span><span class="pr-slot-name">TBA</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">4 PM</span><span class="pr-slot-name">TBA</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">5 PM</span><span class="pr-slot-name">TBA</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">6 PM</span><span class="pr-slot-name">TBA</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">7 PM</span><span class="pr-slot-name">TBA</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">8 PM</span><span class="pr-slot-name">TBA</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">9 PM</span><span class="pr-slot-name">TBA</span></div>
           </div>
           <div>
             <div class="pr-stage-hd">DiscoKnect ★</div>
             <div class="pr-stage-meta">10PM – 6AM</div>
             <div class="pr-dk-slot">
               <div class="pr-dk-time">10PM – 11PM</div>
-              <div class="pr-dk-ch"><span class="pr-dk-dot r"></span>TBD · Red</div>
-              <div class="pr-dk-ch"><span class="pr-dk-dot g"></span>TBD · Green</div>
-              <div class="pr-dk-ch"><span class="pr-dk-dot b"></span>TBD · Blue</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot r"></span>TBA · Red</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot g"></span>TBA · Green</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot b"></span>TBA · Blue</div>
             </div>
             <div class="pr-dk-slot">
               <div class="pr-dk-time">11PM – Midnight</div>
-              <div class="pr-dk-ch"><span class="pr-dk-dot r"></span>TBD · Red</div>
-              <div class="pr-dk-ch"><span class="pr-dk-dot g"></span>TBD · Green</div>
-              <div class="pr-dk-ch"><span class="pr-dk-dot b"></span>TBD · Blue</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot r"></span>TBA · Red</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot g"></span>TBA · Green</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot b"></span>TBA · Blue</div>
             </div>
             <div class="pr-dk-slot">
               <div class="pr-dk-time">Midnight – 2AM</div>
-              <div class="pr-dk-ch"><span class="pr-dk-dot r"></span>TBD · Red</div>
-              <div class="pr-dk-ch"><span class="pr-dk-dot g"></span>TBD · Green</div>
-              <div class="pr-dk-ch"><span class="pr-dk-dot b"></span>TBD · Blue</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot r"></span>TBA · Red</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot g"></span>TBA · Green</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot b"></span>TBA · Blue</div>
             </div>
             <div class="pr-dk-slot">
               <div class="pr-dk-time">2AM – 4AM</div>
-              <div class="pr-dk-ch"><span class="pr-dk-dot r"></span>TBD · Red</div>
-              <div class="pr-dk-ch"><span class="pr-dk-dot g"></span>TBD · Green</div>
-              <div class="pr-dk-ch"><span class="pr-dk-dot b"></span>TBD · Blue</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot r"></span>TBA · Red</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot g"></span>TBA · Green</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot b"></span>TBA · Blue</div>
             </div>
             <div class="pr-dk-slot">
               <div class="pr-dk-time">4AM – 6AM</div>
-              <div class="pr-dk-ch"><span class="pr-dk-dot r"></span>TBD · Red</div>
-              <div class="pr-dk-ch"><span class="pr-dk-dot g"></span>TBD · Green</div>
-              <div class="pr-dk-ch"><span class="pr-dk-dot b"></span>TBD · Blue</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot r"></span>TBA · Red</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot g"></span>TBA · Green</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot b"></span>TBA · Blue</div>
             </div>
           </div>
         </div>
