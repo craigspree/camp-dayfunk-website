@@ -584,6 +584,7 @@
     .day-tab:not(.active):hover { background: var(--rule); color: var(--text); }
 
     .stage-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+    .stage-grid.day-hidden { display: none; }
     .stage-col  { background: var(--bg); padding: 1.5rem; }
     .stage-col.dk { background: var(--text); }
 
@@ -594,7 +595,8 @@
     .stage-meta   { font-family: var(--font-disp); font-size: 0.65rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--faint); margin-bottom: 1rem; }
     .stage-meta.l { color: rgba(253,246,236,0.35); }
 
-    .slot { border: 1px dashed var(--rule); padding: 0.55rem 0.85rem; margin-bottom: 0.35rem; font-family: var(--font-disp); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--faint); background: var(--bg-mid); }
+    .slot { display: flex; align-items: baseline; gap: 0.65rem; border: 1px dashed var(--rule); padding: 0.55rem 0.85rem; margin-bottom: 0.35rem; font-size: 0.85rem; color: var(--muted); background: var(--bg-mid); }
+    .slot-time { font-family: var(--font-disp); font-size: 0.68rem; font-weight: 700; color: var(--faint); white-space: nowrap; }
 
     /* DiscoKnect 3-channel DJ slots */
     .dj-slot { border: 1px solid rgba(255,255,255,0.1); padding: 0.65rem 0.85rem; margin-bottom: 0.4rem; background: rgba(255,255,255,0.04); }
@@ -609,8 +611,9 @@
       padding-bottom: 0.25rem;
       border-bottom: 1px solid rgba(255,255,255,0.08);
     }
-    .dj-ch   { display: flex; align-items: center; gap: 0.45rem; font-family: var(--font-disp); font-size: 0.68rem; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(253,246,236,0.65); padding: 0.14rem 0; }
-    .dj-dot  { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+    .dj-ch   { display: flex; align-items: baseline; gap: 0.45rem; font-size: 0.85rem; color: rgba(253,246,236,0.9); padding: 0.14rem 0; }
+    .dj-chlabel { font-family: var(--font-disp); font-size: 0.6rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(253,246,236,0.4); }
+    .dj-dot  { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; align-self: center; }
     .dj-dot.r { background: #d42010; box-shadow: 0 0 6px rgba(212,32,16,0.7); }
     .dj-dot.g { background: #2a9040; box-shadow: 0 0 6px rgba(42,144,64,0.7); }
     .dj-dot.b { background: #2a55db; box-shadow: 0 0 6px rgba(42,85,219,0.7); }
@@ -1647,8 +1650,8 @@
             <p style="font-size:.9rem;color:var(--muted);margin-bottom:.5rem">Per stage, per night. Links go live on show days:</p>
             <div class="stream-links">
               <!-- TODO: replace hrefs with final submerge.live stream URLs -->
-              <a class="btn btn-filled btn-sm" href="https://submerge.live" target="_blank" rel="noopener noreferrer" data-coming-soon>Stage 1</a>
-              <a class="btn btn-filled btn-sm" href="https://submerge.live" target="_blank" rel="noopener noreferrer" data-coming-soon>Stage 2</a>
+              <a class="btn btn-filled btn-sm" href="https://submerge.live" target="_blank" rel="noopener noreferrer" data-coming-soon>Pavilion</a>
+              <a class="btn btn-filled btn-sm" href="https://submerge.live" target="_blank" rel="noopener noreferrer" data-coming-soon>Amphitheater</a>
             </div>
             <div style="margin-top:.85rem">
               <div style="font-family:var(--font-disp);font-size:.62rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--faint);margin-bottom:.5rem">DiscoKnect</div>
@@ -1710,82 +1713,127 @@
           </div>
           <div class="lineup-row" role="listitem">
             <p class="lineup-tier">Also Performing</p>
-            <p class="lineup-names">Ralph Laurenn &bull; Dan Laino &bull; Scrubfish &bull; Nate Laurence &bull; Nick Gunz &bull; BunnyMob &bull; DJ Focus &bull; Disco Demon &bull; Vaughn Marques &bull; Eric Lee &bull; Dana Kazuko &bull; Jake Encinas &bull; Lack of Witness &bull; Girl E &bull; Daddy &bull; Michelle Muse &bull; Chris Bravos &bull; Faux Paul &bull; Mental Floss &bull; Brownie &bull; Paul Knox &bull; Inside the Robot &bull; DJ Butter &bull; EKS</p>
+            <p class="lineup-names">Ralph Laurenn &bull; Dan Laino &bull; Scrubfish &bull; Nate Laurence &bull; Nick Gunz &bull; BunnyMob &bull; DJ Focus &bull; Disco Demon &bull; Vaughn Marques &bull; Eric Lee &bull; Dana Kazuko &bull; Jake Encinas &bull; Lack of Witness &bull; Girl E &bull; Daddy &bull; Michelle Muse &bull; Chris Bravos &bull; Faux Paul &bull; Mental Floss &bull; Brownie &bull; Paul Knox &bull; Inside the Robot &bull; DJ Butter &bull; EKS &bull; DJ Vlad &bull; Abel &bull; J Matthews &bull; Butaca &bull; Jameen</p>
           </div>
         </div>
 
         <p class="eyebrow" style="margin-bottom:.75rem">DJ Stages</p>
         <div class="mob-stage-tabs" role="tablist" aria-label="Select stage">
-          <button class="mob-stage-tab active" data-stage="0" role="tab" aria-selected="true">Stage 1</button>
-          <button class="mob-stage-tab" data-stage="1" role="tab" aria-selected="false">Stage 2</button>
+          <button class="mob-stage-tab active" data-stage="0" role="tab" aria-selected="true">Pavilion</button>
+          <button class="mob-stage-tab" data-stage="1" role="tab" aria-selected="false">Amphitheater</button>
           <button class="mob-stage-tab orange" data-stage="2" role="tab" aria-selected="false">DiscoKnect</button>
         </div>
         <div class="day-tabs" role="tablist" aria-label="Select day to view schedule">
           <div class="day-tab active" role="tab" aria-selected="true" tabindex="0" data-day="fri">Friday, July 17</div>
           <div class="day-tab" role="tab" aria-selected="false" tabindex="-1" data-day="sat">Saturday, July 18</div>
         </div>
-        <div class="stage-grid" role="region" aria-live="polite" aria-label="DJ stage schedule">
+        <div class="stage-grid" data-day="fri" role="region" aria-live="polite" aria-label="DJ stage schedule, Friday">
           <div class="stage-col mob-visible" data-col="0">
-            <div class="stage-hd">Stage 1</div>
-            <div class="stage-meta js-day-meta">Noon – 10PM · Friday</div>
-            <div class="slot">12 PM · TBA</div>
-            <div class="slot">1 PM · TBA</div>
-            <div class="slot">2 PM · TBA</div>
-            <div class="slot">3 PM · TBA</div>
-            <div class="slot">4 PM · TBA</div>
-            <div class="slot">5 PM · TBA</div>
-            <div class="slot">6 PM · TBA</div>
-            <div class="slot">7 PM · TBA</div>
-            <div class="slot">8 PM · TBA</div>
-            <div class="slot">9 PM · TBA</div>
+            <div class="stage-hd">Pavilion</div>
+            <div class="stage-meta">3PM – 9PM · Friday</div>
+            <div class="slot"><span class="slot-time">3 PM</span>Girl E.</div>
+            <div class="slot"><span class="slot-time">4 PM</span>Chris Bravos</div>
+            <div class="slot"><span class="slot-time">5 PM</span>Scrubfish &amp; Nate Laurence</div>
+            <div class="slot"><span class="slot-time">8 PM</span>Doc Link</div>
+            <div class="slot"><span class="slot-time">9 PM</span>Woody McBride</div>
           </div>
           <div class="stage-col" data-col="1">
-            <div class="stage-hd">Stage 2</div>
-            <div class="stage-meta js-day-meta">Noon – 10PM · Friday</div>
-            <div class="slot">12 PM · TBA</div>
-            <div class="slot">1 PM · TBA</div>
-            <div class="slot">2 PM · TBA</div>
-            <div class="slot">3 PM · TBA</div>
-            <div class="slot">4 PM · TBA</div>
-            <div class="slot">5 PM · TBA</div>
-            <div class="slot">6 PM · TBA</div>
-            <div class="slot">7 PM · TBA</div>
-            <div class="slot">8 PM · TBA</div>
-            <div class="slot">9 PM · TBA</div>
+            <div class="stage-hd">Amphitheater</div>
+            <div class="stage-meta">3PM – 5PM · Friday</div>
+            <div class="slot"><span class="slot-time">3 PM</span>DJ Butter</div>
+            <div class="slot"><span class="slot-time">4 PM</span>Paul Knox</div>
+            <div class="slot"><span class="slot-time">5 PM</span>Faux Paul</div>
           </div>
           <div class="stage-col dk" data-col="2">
             <div class="stage-hd o">DiscoKnect</div>
-            <div class="stage-meta l js-day-meta">10PM – 6AM · Friday</div>
+            <div class="stage-meta l">10PM – 3AM · Friday</div>
             <p style="font-size:.8rem;color:rgba(253,246,236,.45);line-height:1.55;margin-bottom:.85rem">3 DJs play simultaneously each hour. Listeners pick their channel on their headphones.</p>
             <div class="dj-slot">
               <div class="dj-time">10PM – 11PM</div>
-              <div class="dj-ch"><div class="dj-dot r"></div>TBA · Red</div>
-              <div class="dj-ch"><div class="dj-dot g"></div>TBA · Green</div>
-              <div class="dj-ch"><div class="dj-dot b"></div>TBA · Blue</div>
+              <div class="dj-ch"><div class="dj-dot r"></div><span class="dj-name">Paul Knox &amp; Inside the Robot</span><span class="dj-chlabel"> · Red</span></div>
+              <div class="dj-ch"><div class="dj-dot g"></div><span class="dj-name">Jake Encinas</span><span class="dj-chlabel"> · Green</span></div>
+              <div class="dj-ch"><div class="dj-dot b"></div><span class="dj-name">Vaughn Marques</span><span class="dj-chlabel"> · Blue</span></div>
             </div>
             <div class="dj-slot">
               <div class="dj-time">11PM – Midnight</div>
-              <div class="dj-ch"><div class="dj-dot r"></div>TBA · Red</div>
-              <div class="dj-ch"><div class="dj-dot g"></div>TBA · Green</div>
-              <div class="dj-ch"><div class="dj-dot b"></div>TBA · Blue</div>
+              <div class="dj-ch"><div class="dj-dot r"></div><span class="dj-name">DJ Dazy</span><span class="dj-chlabel"> · Red</span></div>
+              <div class="dj-ch"><div class="dj-dot g"></div><span class="dj-name">TBD</span><span class="dj-chlabel"> · Green</span></div>
+              <div class="dj-ch"><div class="dj-dot b"></div><span class="dj-name">Abel</span><span class="dj-chlabel"> · Blue</span></div>
             </div>
             <div class="dj-slot">
-              <div class="dj-time">Midnight – 2AM</div>
-              <div class="dj-ch"><div class="dj-dot r"></div>TBA · Red</div>
-              <div class="dj-ch"><div class="dj-dot g"></div>TBA · Green</div>
-              <div class="dj-ch"><div class="dj-dot b"></div>TBA · Blue</div>
+              <div class="dj-time">Midnight – 1AM</div>
+              <div class="dj-ch"><div class="dj-dot r"></div><span class="dj-name">Daddy</span><span class="dj-chlabel"> · Red</span></div>
+              <div class="dj-ch"><div class="dj-dot g"></div><span class="dj-name">Nick Gunz</span><span class="dj-chlabel"> · Green</span></div>
+              <div class="dj-ch"><div class="dj-dot b"></div><span class="dj-name">Eric Lee</span><span class="dj-chlabel"> · Blue</span></div>
             </div>
             <div class="dj-slot">
-              <div class="dj-time">2AM – 4AM</div>
-              <div class="dj-ch"><div class="dj-dot r"></div>TBA · Red</div>
-              <div class="dj-ch"><div class="dj-dot g"></div>TBA · Green</div>
-              <div class="dj-ch"><div class="dj-dot b"></div>TBA · Blue</div>
+              <div class="dj-time">1AM – 2AM</div>
+              <div class="dj-ch"><div class="dj-dot r"></div><span class="dj-name">Lack of Witness</span><span class="dj-chlabel"> · Red</span></div>
+              <div class="dj-ch"><div class="dj-dot g"></div><span class="dj-name">Michelle Muse</span><span class="dj-chlabel"> · Green</span></div>
+              <div class="dj-ch"><div class="dj-dot b"></div><span class="dj-name">TBD</span><span class="dj-chlabel"> · Blue</span></div>
             </div>
             <div class="dj-slot">
-              <div class="dj-time">4AM – 6AM</div>
-              <div class="dj-ch"><div class="dj-dot r"></div>TBA · Red</div>
-              <div class="dj-ch"><div class="dj-dot g"></div>TBA · Green</div>
-              <div class="dj-ch"><div class="dj-dot b"></div>TBA · Blue</div>
+              <div class="dj-time">2AM – 3AM</div>
+              <div class="dj-ch"><div class="dj-dot r"></div><span class="dj-name">TBD</span><span class="dj-chlabel"> · Red</span></div>
+              <div class="dj-ch"><div class="dj-dot g"></div><span class="dj-name">TBD</span><span class="dj-chlabel"> · Green</span></div>
+              <div class="dj-ch"><div class="dj-dot b"></div><span class="dj-name">TBD</span><span class="dj-chlabel"> · Blue</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="stage-grid day-hidden" data-day="sat" role="region" aria-live="polite" aria-label="DJ stage schedule, Saturday">
+          <div class="stage-col mob-visible" data-col="0">
+            <div class="stage-hd">Pavilion</div>
+            <div class="stage-meta">10AM – 9PM · Saturday</div>
+            <div class="slot"><span class="slot-time">10 AM</span>Abel</div>
+            <div class="slot"><span class="slot-time">11 AM</span>DJ Focus</div>
+            <div class="slot"><span class="slot-time">12 PM</span>Jameen</div>
+            <div class="slot"><span class="slot-time">2 PM</span>Bunny Mob</div>
+            <div class="slot"><span class="slot-time">3 PM</span>EKS</div>
+            <div class="slot"><span class="slot-time">4 PM</span>Ralph Laurenn</div>
+            <div class="slot"><span class="slot-time">5 PM</span>Nick Gunz</div>
+            <div class="slot"><span class="slot-time">6 PM</span>Fortune</div>
+            <div class="slot"><span class="slot-time">8 PM</span>DJ Dazy</div>
+            <div class="slot"><span class="slot-time">9 PM</span>Slugo</div>
+          </div>
+          <div class="stage-col" data-col="1">
+            <div class="stage-hd">Amphitheater</div>
+            <div class="stage-meta">10AM – 6PM · Saturday</div>
+            <div class="slot"><span class="slot-time">10 AM</span>Yoga</div>
+            <div class="slot"><span class="slot-time">11 AM</span>Butaca</div>
+            <div class="slot"><span class="slot-time">12 PM</span>Mental Floss</div>
+            <div class="slot"><span class="slot-time">2 PM</span>Dana Kazuko</div>
+            <div class="slot"><span class="slot-time">3 PM</span>Disco Demon</div>
+            <div class="slot"><span class="slot-time">4 PM</span>TBD</div>
+            <div class="slot"><span class="slot-time">5 PM</span>J Matthews</div>
+            <div class="slot"><span class="slot-time">6 PM</span>Brownie</div>
+          </div>
+          <div class="stage-col dk" data-col="2">
+            <div class="stage-hd o">DiscoKnect</div>
+            <div class="stage-meta l">10PM – 2AM · Saturday</div>
+            <p style="font-size:.8rem;color:rgba(253,246,236,.45);line-height:1.55;margin-bottom:.85rem">3 DJs play simultaneously each hour. Listeners pick their channel on their headphones.</p>
+            <div class="dj-slot">
+              <div class="dj-time">10PM – 11PM</div>
+              <div class="dj-ch"><div class="dj-dot r"></div><span class="dj-name">DJ Vlad</span><span class="dj-chlabel"> · Red</span></div>
+              <div class="dj-ch"><div class="dj-dot g"></div><span class="dj-name">Ralph Laurenn</span><span class="dj-chlabel"> · Green</span></div>
+              <div class="dj-ch"><div class="dj-dot b"></div><span class="dj-name">Brownie</span><span class="dj-chlabel"> · Blue</span></div>
+            </div>
+            <div class="dj-slot">
+              <div class="dj-time">11PM – Midnight</div>
+              <div class="dj-ch"><div class="dj-dot r"></div><span class="dj-name">Nate Laurence</span><span class="dj-chlabel"> · Red</span></div>
+              <div class="dj-ch"><div class="dj-dot g"></div><span class="dj-name">Fortune</span><span class="dj-chlabel"> · Green</span></div>
+              <div class="dj-ch"><div class="dj-dot b"></div><span class="dj-name">Doc Link</span><span class="dj-chlabel"> · Blue</span></div>
+            </div>
+            <div class="dj-slot">
+              <div class="dj-time">Midnight – 1AM</div>
+              <div class="dj-ch"><div class="dj-dot r"></div><span class="dj-name">Scrubfish</span><span class="dj-chlabel"> · Red</span></div>
+              <div class="dj-ch"><div class="dj-dot g"></div><span class="dj-name">Girl E</span><span class="dj-chlabel"> · Green</span></div>
+              <div class="dj-ch"><div class="dj-dot b"></div><span class="dj-name">TBD</span><span class="dj-chlabel"> · Blue</span></div>
+            </div>
+            <div class="dj-slot">
+              <div class="dj-time">1AM – 2AM</div>
+              <div class="dj-ch"><div class="dj-dot r"></div><span class="dj-name">TBD</span><span class="dj-chlabel"> · Red</span></div>
+              <div class="dj-ch"><div class="dj-dot g"></div><span class="dj-name">TBD</span><span class="dj-chlabel"> · Green</span></div>
+              <div class="dj-ch"><div class="dj-dot b"></div><span class="dj-name">TBD</span><span class="dj-chlabel"> · Blue</span></div>
             </div>
           </div>
         </div>
@@ -1808,10 +1856,10 @@
           </div>
           <div class="day-col">
             <div class="day-col-hd">Saturday, July 18</div>
-            <div class="day-item"><span class="day-time">9:00 AM</span>Coffee Bar</div>
+            <div class="day-item"><span class="day-time">7:30 AM</span>Coffee Bar</div>
             <div class="day-item"><span class="day-time">9:00 AM</span>Yoga</div>
             <div class="day-item"><span class="day-time">10:00 AM</span>Breakfast</div>
-            <div class="day-item"><span class="day-time">11AM – 4PM</span>Activities, Yard Games + Lunch</div>
+            <div class="day-item"><span class="day-time">11AM – 4PM</span>Tie Dye, Crafts, Yard Games &amp; Lunch</div>
             <div class="day-item"><span class="day-time">7:00 PM</span>Dinner</div>
             <div class="day-item hl"><span class="day-time">10:00 PM</span>DiscoKnect Begins</div>
             <div class="day-item"><span class="day-time">11:00 PM</span>Snack</div>
@@ -1987,9 +2035,7 @@
 
       /* ── Schedule day tabs ── */
       var dayTabs  = document.querySelectorAll('.day-tab');
-      var dayMetas = document.querySelectorAll('.js-day-meta');
-      var metaFri  = ['Noon – 10PM · Friday', 'Noon – 10PM · Friday', '10PM – 6AM · Friday'];
-      var metaSat  = ['Noon – 10PM · Saturday', 'Noon – 10PM · Saturday', '10PM – 6AM · Saturday'];
+      var dayGrids = document.querySelectorAll('.stage-grid');
 
       dayTabs.forEach(function(tab) {
         tab.addEventListener('click', function() {
@@ -2003,8 +2049,7 @@
           tab.classList.add('active');
           tab.setAttribute('aria-selected', 'true');
           tab.setAttribute('tabindex', '0');
-          var labels = day === 'sat' ? metaSat : metaFri;
-          dayMetas.forEach(function(m, i) { if (labels[i]) m.textContent = labels[i]; });
+          dayGrids.forEach(function(g) { g.classList.toggle('day-hidden', g.dataset.day !== day); });
         });
       });
 
@@ -2026,7 +2071,7 @@
       }
       mobStageTabs.forEach(function(tab) {
         tab.addEventListener('click', function() {
-          var stageNames = ['Stage 1', 'Stage 2', 'DiscoKnect'];
+          var stageNames = ['Pavilion', 'Amphitheater', 'DiscoKnect'];
           track('schedule_stage_tab', { stage: stageNames[tab.dataset.stage] || tab.dataset.stage });
           setMobStage(tab.dataset.stage);
         });
@@ -2457,65 +2502,53 @@
         <div class="pr-day-hd">Friday, July 17</div>
         <div class="pr-stages">
           <div>
-            <div class="pr-stage-hd">Stage 1</div>
-            <div class="pr-stage-meta">Noon – 10PM</div>
-            <div class="pr-slot"><span class="pr-slot-time">12 PM</span><span class="pr-slot-name">TBA</span></div>
-            <div class="pr-slot"><span class="pr-slot-time">1 PM</span><span class="pr-slot-name">TBA</span></div>
-            <div class="pr-slot"><span class="pr-slot-time">2 PM</span><span class="pr-slot-name">TBA</span></div>
-            <div class="pr-slot"><span class="pr-slot-time">3 PM</span><span class="pr-slot-name">TBA</span></div>
-            <div class="pr-slot"><span class="pr-slot-time">4 PM</span><span class="pr-slot-name">TBA</span></div>
-            <div class="pr-slot"><span class="pr-slot-time">5 PM</span><span class="pr-slot-name">TBA</span></div>
-            <div class="pr-slot"><span class="pr-slot-time">6 PM</span><span class="pr-slot-name">TBA</span></div>
-            <div class="pr-slot"><span class="pr-slot-time">7 PM</span><span class="pr-slot-name">TBA</span></div>
-            <div class="pr-slot"><span class="pr-slot-time">8 PM</span><span class="pr-slot-name">TBA</span></div>
-            <div class="pr-slot"><span class="pr-slot-time">9 PM</span><span class="pr-slot-name">TBA</span></div>
+            <div class="pr-stage-hd">Pavilion</div>
+            <div class="pr-stage-meta">3PM – 9PM</div>
+            <div class="pr-slot"><span class="pr-slot-time">3 PM</span><span class="pr-slot-name">Girl E.</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">4 PM</span><span class="pr-slot-name">Chris Bravos</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">5 PM</span><span class="pr-slot-name">Scrubfish &amp; Nate Laurence</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">8 PM</span><span class="pr-slot-name">Doc Link</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">9 PM</span><span class="pr-slot-name">Woody McBride</span></div>
           </div>
           <div>
-            <div class="pr-stage-hd">Stage 2</div>
-            <div class="pr-stage-meta">Noon – 10PM</div>
-            <div class="pr-slot"><span class="pr-slot-time">12 PM</span><span class="pr-slot-name">TBA</span></div>
-            <div class="pr-slot"><span class="pr-slot-time">1 PM</span><span class="pr-slot-name">TBA</span></div>
-            <div class="pr-slot"><span class="pr-slot-time">2 PM</span><span class="pr-slot-name">TBA</span></div>
-            <div class="pr-slot"><span class="pr-slot-time">3 PM</span><span class="pr-slot-name">TBA</span></div>
-            <div class="pr-slot"><span class="pr-slot-time">4 PM</span><span class="pr-slot-name">TBA</span></div>
-            <div class="pr-slot"><span class="pr-slot-time">5 PM</span><span class="pr-slot-name">TBA</span></div>
-            <div class="pr-slot"><span class="pr-slot-time">6 PM</span><span class="pr-slot-name">TBA</span></div>
-            <div class="pr-slot"><span class="pr-slot-time">7 PM</span><span class="pr-slot-name">TBA</span></div>
-            <div class="pr-slot"><span class="pr-slot-time">8 PM</span><span class="pr-slot-name">TBA</span></div>
-            <div class="pr-slot"><span class="pr-slot-time">9 PM</span><span class="pr-slot-name">TBA</span></div>
+            <div class="pr-stage-hd">Amphitheater</div>
+            <div class="pr-stage-meta">3PM – 5PM</div>
+            <div class="pr-slot"><span class="pr-slot-time">3 PM</span><span class="pr-slot-name">DJ Butter</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">4 PM</span><span class="pr-slot-name">Paul Knox</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">5 PM</span><span class="pr-slot-name">Faux Paul</span></div>
           </div>
           <div>
             <div class="pr-stage-hd">DiscoKnect ★</div>
-            <div class="pr-stage-meta">10PM – 6AM</div>
+            <div class="pr-stage-meta">10PM – 3AM</div>
             <div class="pr-dk-slot">
               <div class="pr-dk-time">10PM – 11PM</div>
-              <div class="pr-dk-ch"><span class="pr-dk-dot r"></span>TBA · Red</div>
-              <div class="pr-dk-ch"><span class="pr-dk-dot g"></span>TBA · Green</div>
-              <div class="pr-dk-ch"><span class="pr-dk-dot b"></span>TBA · Blue</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot r"></span>Paul Knox &amp; Inside the Robot · Red</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot g"></span>Jake Encinas · Green</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot b"></span>Vaughn Marques · Blue</div>
             </div>
             <div class="pr-dk-slot">
               <div class="pr-dk-time">11PM – Midnight</div>
-              <div class="pr-dk-ch"><span class="pr-dk-dot r"></span>TBA · Red</div>
-              <div class="pr-dk-ch"><span class="pr-dk-dot g"></span>TBA · Green</div>
-              <div class="pr-dk-ch"><span class="pr-dk-dot b"></span>TBA · Blue</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot r"></span>DJ Dazy · Red</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot g"></span>TBD · Green</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot b"></span>Abel · Blue</div>
             </div>
             <div class="pr-dk-slot">
-              <div class="pr-dk-time">Midnight – 2AM</div>
-              <div class="pr-dk-ch"><span class="pr-dk-dot r"></span>TBA · Red</div>
-              <div class="pr-dk-ch"><span class="pr-dk-dot g"></span>TBA · Green</div>
-              <div class="pr-dk-ch"><span class="pr-dk-dot b"></span>TBA · Blue</div>
+              <div class="pr-dk-time">Midnight – 1AM</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot r"></span>Daddy · Red</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot g"></span>Nick Gunz · Green</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot b"></span>Eric Lee · Blue</div>
             </div>
             <div class="pr-dk-slot">
-              <div class="pr-dk-time">2AM – 4AM</div>
-              <div class="pr-dk-ch"><span class="pr-dk-dot r"></span>TBA · Red</div>
-              <div class="pr-dk-ch"><span class="pr-dk-dot g"></span>TBA · Green</div>
-              <div class="pr-dk-ch"><span class="pr-dk-dot b"></span>TBA · Blue</div>
+              <div class="pr-dk-time">1AM – 2AM</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot r"></span>Lack of Witness · Red</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot g"></span>Michelle Muse · Green</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot b"></span>TBD · Blue</div>
             </div>
             <div class="pr-dk-slot">
-              <div class="pr-dk-time">4AM – 6AM</div>
-              <div class="pr-dk-ch"><span class="pr-dk-dot r"></span>TBA · Red</div>
-              <div class="pr-dk-ch"><span class="pr-dk-dot g"></span>TBA · Green</div>
-              <div class="pr-dk-ch"><span class="pr-dk-dot b"></span>TBA · Blue</div>
+              <div class="pr-dk-time">2AM – 3AM</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot r"></span>TBD · Red</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot g"></span>TBD · Green</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot b"></span>TBD · Blue</div>
             </div>
           </div>
         </div>
@@ -2528,65 +2561,57 @@
         <div class="pr-day-hd">Saturday, July 18</div>
         <div class="pr-stages">
           <div>
-            <div class="pr-stage-hd">Stage 1</div>
-            <div class="pr-stage-meta">Noon – 10PM</div>
-            <div class="pr-slot"><span class="pr-slot-time">12 PM</span><span class="pr-slot-name">TBA</span></div>
-            <div class="pr-slot"><span class="pr-slot-time">1 PM</span><span class="pr-slot-name">TBA</span></div>
-            <div class="pr-slot"><span class="pr-slot-time">2 PM</span><span class="pr-slot-name">TBA</span></div>
-            <div class="pr-slot"><span class="pr-slot-time">3 PM</span><span class="pr-slot-name">TBA</span></div>
-            <div class="pr-slot"><span class="pr-slot-time">4 PM</span><span class="pr-slot-name">TBA</span></div>
-            <div class="pr-slot"><span class="pr-slot-time">5 PM</span><span class="pr-slot-name">TBA</span></div>
-            <div class="pr-slot"><span class="pr-slot-time">6 PM</span><span class="pr-slot-name">TBA</span></div>
-            <div class="pr-slot"><span class="pr-slot-time">7 PM</span><span class="pr-slot-name">TBA</span></div>
-            <div class="pr-slot"><span class="pr-slot-time">8 PM</span><span class="pr-slot-name">TBA</span></div>
-            <div class="pr-slot"><span class="pr-slot-time">9 PM</span><span class="pr-slot-name">TBA</span></div>
+            <div class="pr-stage-hd">Pavilion</div>
+            <div class="pr-stage-meta">10AM – 9PM</div>
+            <div class="pr-slot"><span class="pr-slot-time">10 AM</span><span class="pr-slot-name">Abel</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">11 AM</span><span class="pr-slot-name">DJ Focus</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">12 PM</span><span class="pr-slot-name">Jameen</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">2 PM</span><span class="pr-slot-name">Bunny Mob</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">3 PM</span><span class="pr-slot-name">EKS</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">4 PM</span><span class="pr-slot-name">Ralph Laurenn</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">5 PM</span><span class="pr-slot-name">Nick Gunz</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">6 PM</span><span class="pr-slot-name">Fortune</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">8 PM</span><span class="pr-slot-name">DJ Dazy</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">9 PM</span><span class="pr-slot-name">Slugo</span></div>
           </div>
           <div>
-            <div class="pr-stage-hd">Stage 2</div>
-            <div class="pr-stage-meta">Noon – 10PM</div>
-            <div class="pr-slot"><span class="pr-slot-time">12 PM</span><span class="pr-slot-name">TBA</span></div>
-            <div class="pr-slot"><span class="pr-slot-time">1 PM</span><span class="pr-slot-name">TBA</span></div>
-            <div class="pr-slot"><span class="pr-slot-time">2 PM</span><span class="pr-slot-name">TBA</span></div>
-            <div class="pr-slot"><span class="pr-slot-time">3 PM</span><span class="pr-slot-name">TBA</span></div>
-            <div class="pr-slot"><span class="pr-slot-time">4 PM</span><span class="pr-slot-name">TBA</span></div>
-            <div class="pr-slot"><span class="pr-slot-time">5 PM</span><span class="pr-slot-name">TBA</span></div>
-            <div class="pr-slot"><span class="pr-slot-time">6 PM</span><span class="pr-slot-name">TBA</span></div>
-            <div class="pr-slot"><span class="pr-slot-time">7 PM</span><span class="pr-slot-name">TBA</span></div>
-            <div class="pr-slot"><span class="pr-slot-time">8 PM</span><span class="pr-slot-name">TBA</span></div>
-            <div class="pr-slot"><span class="pr-slot-time">9 PM</span><span class="pr-slot-name">TBA</span></div>
+            <div class="pr-stage-hd">Amphitheater</div>
+            <div class="pr-stage-meta">10AM – 6PM</div>
+            <div class="pr-slot"><span class="pr-slot-time">10 AM</span><span class="pr-slot-name">Yoga</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">11 AM</span><span class="pr-slot-name">Butaca</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">12 PM</span><span class="pr-slot-name">Mental Floss</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">2 PM</span><span class="pr-slot-name">Dana Kazuko</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">3 PM</span><span class="pr-slot-name">Disco Demon</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">4 PM</span><span class="pr-slot-name">TBD</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">5 PM</span><span class="pr-slot-name">J Matthews</span></div>
+            <div class="pr-slot"><span class="pr-slot-time">6 PM</span><span class="pr-slot-name">Brownie</span></div>
           </div>
           <div>
             <div class="pr-stage-hd">DiscoKnect ★</div>
-            <div class="pr-stage-meta">10PM – 6AM</div>
+            <div class="pr-stage-meta">10PM – 2AM</div>
             <div class="pr-dk-slot">
               <div class="pr-dk-time">10PM – 11PM</div>
-              <div class="pr-dk-ch"><span class="pr-dk-dot r"></span>TBA · Red</div>
-              <div class="pr-dk-ch"><span class="pr-dk-dot g"></span>TBA · Green</div>
-              <div class="pr-dk-ch"><span class="pr-dk-dot b"></span>TBA · Blue</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot r"></span>DJ Vlad · Red</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot g"></span>Ralph Laurenn · Green</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot b"></span>Brownie · Blue</div>
             </div>
             <div class="pr-dk-slot">
               <div class="pr-dk-time">11PM – Midnight</div>
-              <div class="pr-dk-ch"><span class="pr-dk-dot r"></span>TBA · Red</div>
-              <div class="pr-dk-ch"><span class="pr-dk-dot g"></span>TBA · Green</div>
-              <div class="pr-dk-ch"><span class="pr-dk-dot b"></span>TBA · Blue</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot r"></span>Nate Laurence · Red</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot g"></span>Fortune · Green</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot b"></span>Doc Link · Blue</div>
             </div>
             <div class="pr-dk-slot">
-              <div class="pr-dk-time">Midnight – 2AM</div>
-              <div class="pr-dk-ch"><span class="pr-dk-dot r"></span>TBA · Red</div>
-              <div class="pr-dk-ch"><span class="pr-dk-dot g"></span>TBA · Green</div>
-              <div class="pr-dk-ch"><span class="pr-dk-dot b"></span>TBA · Blue</div>
+              <div class="pr-dk-time">Midnight – 1AM</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot r"></span>Scrubfish · Red</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot g"></span>Girl E · Green</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot b"></span>TBD · Blue</div>
             </div>
             <div class="pr-dk-slot">
-              <div class="pr-dk-time">2AM – 4AM</div>
-              <div class="pr-dk-ch"><span class="pr-dk-dot r"></span>TBA · Red</div>
-              <div class="pr-dk-ch"><span class="pr-dk-dot g"></span>TBA · Green</div>
-              <div class="pr-dk-ch"><span class="pr-dk-dot b"></span>TBA · Blue</div>
-            </div>
-            <div class="pr-dk-slot">
-              <div class="pr-dk-time">4AM – 6AM</div>
-              <div class="pr-dk-ch"><span class="pr-dk-dot r"></span>TBA · Red</div>
-              <div class="pr-dk-ch"><span class="pr-dk-dot g"></span>TBA · Green</div>
-              <div class="pr-dk-ch"><span class="pr-dk-dot b"></span>TBA · Blue</div>
+              <div class="pr-dk-time">1AM – 2AM</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot r"></span>TBD · Red</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot g"></span>TBD · Green</div>
+              <div class="pr-dk-ch"><span class="pr-dk-dot b"></span>TBD · Blue</div>
             </div>
           </div>
         </div>
@@ -2608,10 +2633,10 @@
         </div>
         <div>
           <div class="pr-act-day-hd">Saturday, July 18</div>
-          <div class="pr-act-item"><span class="pr-act-time">9:00 AM</span>Coffee Bar</div>
+          <div class="pr-act-item"><span class="pr-act-time">7:30 AM</span>Coffee Bar</div>
           <div class="pr-act-item"><span class="pr-act-time">9:00 AM</span>Yoga</div>
           <div class="pr-act-item"><span class="pr-act-time">10:00 AM</span>Breakfast</div>
-          <div class="pr-act-item"><span class="pr-act-time">11AM – 4PM</span>Activities, Yard Games + Lunch</div>
+          <div class="pr-act-item"><span class="pr-act-time">11AM – 4PM</span>Tie Dye, Crafts, Yard Games &amp; Lunch</div>
           <div class="pr-act-item"><span class="pr-act-time">7:00 PM</span>Dinner</div>
           <div class="pr-act-item pr-act-hl"><span class="pr-act-time">10:00 PM</span>DiscoKnect Begins</div>
           <div class="pr-act-item"><span class="pr-act-time">11:00 PM</span>Snack</div>
