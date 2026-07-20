@@ -1,3 +1,4 @@
 User-agent: *
 Allow: /
+Disallow: /2026/
 Sitemap: https://campdayfunk.com/sitemap.xml
