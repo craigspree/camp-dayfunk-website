@@ -141,7 +141,12 @@
   <div class="eyebrow">Camp DayFunk</div>
   <h1>Thank You for a Great 2026!</h1>
   <p>Stay tuned for 2027&hellip;</p>
-  <a class="btn" href="https://forms.gle/vuaYhCXcA3q6JyGv5" target="_blank" rel="noopener" onclick="gtag('event','survey_click',{location:'homepage'})">Take Our Survey</a>
+  <a id="survey-cta" class="btn" href="https://forms.gle/vuaYhCXcA3q6JyGv5" target="_blank" rel="noopener" onclick="gtag('event','survey_click',{location:'homepage'})">Take Our Survey</a>
+  <script>
+    if (new Date() >= new Date(2026, 10, 1)) {
+      document.getElementById('survey-cta').style.display = 'none';
+    }
+  </script>
   <a class="site-link" href="https://dayfunk.com" target="_blank" rel="noopener noreferrer">DayFunk.com</a>
 </body>
 </html>
