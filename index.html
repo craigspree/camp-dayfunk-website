@@ -113,6 +113,27 @@
     }
 
     a.site-link:hover { color: var(--orange); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: var(--font-disp);
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 0.75rem 1.75rem;
+      min-height: 44px;
+      border: 1.5px solid var(--orange);
+      text-decoration: none;
+      cursor: pointer;
+      background: var(--orange);
+      color: var(--bg);
+      transition: background 0.18s, color 0.18s;
+    }
+
+    .btn:hover { background: #c95408; border-color: #c95408; }
   </style>
 </head>
 <body>
@@ -120,6 +141,7 @@
   <div class="eyebrow">Camp DayFunk</div>
   <h1>Thank You for a Great 2026!</h1>
   <p>Stay tuned for 2027&hellip;</p>
+  <a class="btn" href="https://forms.gle/vuaYhCXcA3q6JyGv5" target="_blank" rel="noopener" onclick="gtag('event','survey_click',{location:'homepage'})">Take Our Survey</a>
   <a class="site-link" href="https://dayfunk.com" target="_blank" rel="noopener noreferrer">DayFunk.com</a>
 </body>
 </html>
